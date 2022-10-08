@@ -40,9 +40,15 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img th:src="${userAvatar} != null ? ${'data:image/jpeg;charset=utf-8;base64;' + userAvatar} : '/static/img/default_avatar.png'"
-                             alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3" th:object="${user.username}"></h5>
+                        <form id="uploadForm" class="avatar-wrapper" method="post" th:action="@{/account/avatar}" enctype="multipart/form-data">
+                            <img th:src="${userAvatar} != null ? ${'data:image;base64,' + userAvatar} : '/static/img/default_avatar.png'"
+                                 alt="avatar" class="rounded-circle img-fluid profile-pic">
+                            <div class="upload-button">
+                                <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                            </div>
+                            <input class="file-upload" name="image" id="imageInput" type="file" accept="image/*"/>
+                        </form>
+                        <h5 class="my-3" th:object="${user.getUsername()}"></h5>
                     </div>
                 </div>
             </div>
@@ -54,7 +60,7 @@
                                 <p class="mb-0">Username</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0" th:object="${user.username}"></p>
+                                <p class="text-muted mb-0" th:object="${user.getUsername()}"></p>
                             </div>
                         </div>
                         <hr>
@@ -72,7 +78,7 @@
                                 <p class="mb-0">JWT Token</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0" th:object="${user.token}"></p>
+                                <p class="text-muted mb-0" th:object="${user.getToken()}"></p>
                             </div>
                         </div>
                     </div>
@@ -82,4 +88,62 @@
     </div>
 </section>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        let readURL = function(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imageInput').attr('value', e.target.result);
+
+                    let formData = new FormData();
+                    formData.append('file', input.files[0]);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'account/avatar',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(){
+                            $('#imageInput').attr('value', '');
+                            $('.profile-pic').attr('src', e.target.result);
+                        }
+                    });
+                    /**
+                    $.ajax({
+                        url: "/photo/upload/upload",
+                        type: "POST",
+                        dataType: 'text',
+                        contentType: false,
+                        processData: false,
+                        cache: false,
+                        data: formData,
+                        success: function(response) {
+                            alert("success");
+                        },
+                        error: function() {
+                            alert("unable to create the record");
+                        }**/
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function(){
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function() {
+            $(".file-upload").click();
+        });
+    });
+</script>
+
 </html>
