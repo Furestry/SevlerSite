@@ -25,15 +25,15 @@ public class SecurityConfig {
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .loginProcessingUrl("/perform-login")
+                .loginProcessingUrl("/login")
                 .usernameParameter("user")
                 .passwordParameter("pass")
-                .defaultSuccessUrl("/account", true)
+                .defaultSuccessUrl("/account", false)
                 .failureUrl("/login?error=login")
                 .failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
-                .logoutUrl("/perform-logout")
+                .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessHandler(logoutSuccessHandler());
 
