@@ -396,7 +396,7 @@ section {
   font-size: 26px;
 }
 
-.hero {
+.hero .btn-get-started {
   margin-top: 30px;
   line-height: 0;
   padding: 15px 40px;
@@ -582,7 +582,7 @@ section {
   color: #fff;
 }
 
-.features h3 {
+.features .feature-tabs h3 {
   color: #012970;
   font-weight: 700;
   font-size: 32px;
@@ -590,19 +590,19 @@ section {
 }
 
 @media (max-width: 768px) {
-  .features .feture-tabs h3 {
+  .features .feature-tabs h3 {
     font-size: 28px;
   }
 }
 
-.features .feture-tabs .tab-content h4 {
+.features .feature-tabs .tab-content h4 {
   font-size: 18px;
   margin: 0;
   font-weight: 700;
   color: #012970;
 }
 
-.features .feture-tabs .tab-content i {
+.features .feature-tabs .tab-content i {
   font-size: 24px;
   line-height: 0;
   margin-right: 8px;
