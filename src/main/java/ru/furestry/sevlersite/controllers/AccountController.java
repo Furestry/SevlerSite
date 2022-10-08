@@ -43,7 +43,6 @@ public class AccountController {
 
         @PostMapping(value = "/avatar")
         public void uploadAvatar(@RequestParam("file") MultipartFile multipartImage, Principal principal) throws Exception {
-            System.out.println(multipartImage.getOriginalFilename() + " " + multipartImage.getContentType());
             User user = userRepository.findByUsername(principal.getName());
             user.setAvatar(multipartImage.getBytes());
 
