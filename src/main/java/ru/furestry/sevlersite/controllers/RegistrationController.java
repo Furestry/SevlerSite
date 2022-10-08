@@ -25,17 +25,13 @@ public class RegistrationController {
 
         model.addAttribute("user", new User());
 
-        return "register";
+        return "registration";
     }
 
     @PostMapping
     public void registerSubmit(@ModelAttribute User user, HttpServletResponse response) throws IOException {
-        System.out.println(user);
-
         user.setPassword(encoder.encode(user.getPassword()));
         userRepository.save(user);
-
-        System.out.println(user.getPassword());
 
         response.sendRedirect("/login");
     }
