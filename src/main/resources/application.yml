@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  datasource:
+    url: ${site_db_url}
+    username: ${site_db_username}
+    password: ${site_db_password}
+  servlet:
+    multipart:
+      max-request-size: 16MB
+      max-file-size: 16MB
+  mvc:
+    static-path-pattern: /static/**
+  jpa:
+    hibernate:
+      ddl-auto: update
+  config:
+    activate:
+      on-profile: dev
+
+server:
+  port: ${PORT}
+
+---
+
+spring:
+  datasource:
+    url: ${SITE_DB_URL}
+    username: ${SITE_DB_USERNAME}
+    password: ${SITE_DB_PASSWORD}
+  servlet:
+    multipart:
+      max-request-size: 8MB
+      max-file-size: 8MB
+  mvc:
+    static-path-pattern: /static/**
+  jpa:
+    hibernate:
+      ddl-auto: update
+  config:
+    activate:
+      on-profile: prod
+
+server:
+  port: ${SITE_PORT}
