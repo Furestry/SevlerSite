@@ -64,9 +64,10 @@
                     <div class="tw-mt-9">
                         <h2 class="tw-text-2xl tw-font-bold">
                             <span class="tw-mr-3">SevlerSite API V1</span>
-                            <a class="sp-status btn btn-sm btn-secondary keychainify-checked" href="/status" data-loaded="true">Status
+                            <span class="sp-status btn btn-sm btn-secondary keychainify-checked" onmouseover="changeTooltip(this)" onmouseout="changeTooltip(this)">Status
                                 <span class="bi bi-circle-fill" style="color: #5AFE51;"></span>
-                            </a>
+                                <span class="sp-tooltip sp-tooltip--top closed">All systems operational</span>
+                            </span>
                         </h2>
 
                         <div class="scheme-container">
@@ -410,41 +411,7 @@
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.2/swiper-bundle.min.js"></script>
 
-<script src="/static/js/main.js"></script>
-
-<script>
-    function changeState(element) {
-        let elToClose = element.parentElement.parentElement.getElementsByClassName("opblock-body").item(0);
-
-        if (elToClose.classList.contains("closed")) {
-            elToClose.classList.remove("closed");
-
-            element.getElementsByClassName("bi").item(0).classList.remove("bi-chevron-down");
-            element.getElementsByClassName("bi").item(0).classList.add("bi-chevron-up");
-        } else {
-            elToClose.classList.add("closed");
-
-            element.getElementsByClassName("bi").item(0).classList.add("bi-chevron-down");
-            element.getElementsByClassName("bi").item(0).classList.remove("bi-chevron-up");
-        }
-    }
-
-    function changeCatState(elH) {
-        let parentEl = elH.parentElement;
-        let element = parentEl.getElementsByClassName("no-margin").item(0);
-
-        if (element.classList.contains("closed")) {
-            element.classList.remove("closed");
-
-            parentEl.getElementsByClassName("bi").item(0).classList.add("bi-chevron-up");
-            parentEl.getElementsByClassName("bi").item(0).classList.remove("bi-chevron-down");
-        } else {
-            element.classList.add("closed");
-
-            parentEl.getElementsByClassName("bi").item(0).classList.remove("bi-chevron-up");
-            parentEl.getElementsByClassName("bi").item(0).classList.add("bi-chevron-down");
-        }
-    }
-</script>
+<script src="/static/js/main.min.js"></script>
+<script src="/static/js/api.min.js"></script>
 
 </html>
