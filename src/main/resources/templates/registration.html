@@ -68,29 +68,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 <script src="/static/js/login.min.js"></script>
-
-<script>
-    let password = document.getElementById("password");
-    let passwordValidate = document.getElementById("repeatPassword");
-    let registration = document.getElementById("registration");
-    let nickname = document.getElementById("nickname");
-
-    registration.onclick = function() {
-        if (nickname.value == null || nickname.value.length < 3) {
-            alert("Nickname must contains 3 and more symbols!");
-            return false;
-        }
-
-        if (password.value != passwordValidate.value) {
-            alert("Passwords must be equals!");
-            return false;
-        }
-
-        if (password.value == null || password.value.length < 8) {
-            alert("Password must contains 8 and more symbols!");
-            return false;
-        }
-    }
-</script>
+<script src="/static/js/registration.min.js"></script>
 
 </html>
