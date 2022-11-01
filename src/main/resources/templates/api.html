@@ -7,7 +7,7 @@
 
     <title>SevlerSite - API</title>
 
-    <link href="/static/img/favicon.ico" rel="icon">
+    <link href="/favicon.ico" rel="icon">
     <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -15,7 +15,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/style.min.css" rel="stylesheet">
+    <link href="/static/css/api.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -57,29 +58,295 @@
 
     <section id="hero" class="hero d-flex align-items-center">
 
-        <div class="container">
-            <div class="row">
+        <div class="container swagger-ui">
+            <div class="row" style="justify-content: center;">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
                     <div class="tw-mt-9">
                         <h2 class="tw-text-2xl tw-font-bold">
                             <span class="tw-mr-3">SevlerSite API V1</span>
+                            <a class="sp-status btn btn-sm btn-secondary keychainify-checked" href="/status" data-loaded="true">Status
+                                <span class="bi bi-circle-fill" style="color: #5AFE51;"></span>
+                            </a>
                         </h2>
-                        <div class="tw--mt-9 swagger-api">
-                            <div data-reactroot="" class="swagger-ui">
-                                <span>
-                                    <div class="">
-                                        <div class="">
-                                            <button aria-label="get /simple/price" aria-expanded="false" class="">
-                                                <span class="">GET</span>
-                                                <span class="" data-path="/simple/price">
-                                                    <a class=""><span>/simple/price</span></a>
-                                                </span>
-                                                <div class="">Get the current price of any cryptocurrencies in any other supported currencies that you need.</div>
-                                                <i class="bi bi-chevron-down"></i>
-                                            </button>
+
+                        <div class="scheme-container">
+                            <section class="schemes wrapper block col-12">
+                                <label>
+                                    <span class="schemes-title">Schemes</span>
+                                    <select>
+                                        <option value="https">https</option>
+                                    </select>
+                                </label>
+                            </section>
+                        </div>
+
+                        <div class="opblock-tag-section">
+                            <h3 class="opblock-tag no-desc" onclick="changeCatState(this)">
+                                <a class="nostyle"><span>ping</span></a>
+                                <button aria-expanded="true" class="expand-operation" title="Collapse operation">
+                                    <i class="bi bi-chevron-up"></i>
+                                </button>
+                            </h3>
+
+                            <div class="no-margin">
+                                <div class="operation-tag-content">
+                                    <span>
+                                        <div class="opblock opblock-get">
+                                            <div class="opblock-summary opblock-summary-get">
+                                                <button aria-label="get /ping" aria-expanded="true" class="opblock-summary-control" onclick="changeState(this)">
+                                                    <span class="opblock-summary-method">GET</span>
+                                                    <span class="opblock-summary-path" data-path="/ping">
+                                                        <a class="nostyle"><span>/ping</span></a>
+                                                    </span>
+                                                    <div class="opblock-summary-description">Check API server status</div>
+                                                    <i class="bi bi-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="no-margin">
+                                                <div class="opblock-body closed">
+                                                    <div class="opblock-description-wrapper">
+                                                        <div class="opblock-description">
+                                                            <div class="markdown">
+                                                                <p>Check API server status</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-section">
+                                                        <div class="opblock-section-header">
+                                                            <div class="tab-header">
+                                                                <h4 class="opblock-title">Parameters</h4>
+                                                            </div>
+                                                            <div class="try-out">
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/ping'">Try it out </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="parameters-container">
+                                                            <div class="opblock-description-wrapper">
+                                                                <p>No parameters</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="responses-wrapper">
+                                                        <div class="opblock-section-header">
+                                                            <h4>Responses</h4>
+                                                            <span>Response content type</span>
+                                                            <div class="content-type-wrapper execute-content-type">
+                                                                <select aria-label="Response content type" class="content-type">
+                                                                    <option value="application/json">application/json</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
+                                                            <thead>
+                                                            <tr class="responses-header">
+                                                                <td class="col_header response-col_status">Code</td>
+                                                                <td class="col_header response-col_description">Description</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="response " data-code="200">
+                                                                <td class="response-col_status">200</td>
+                                                                <td class="response-col_description">
+                                                                    <div class="response-col_description__inner">
+                                                                        <div class="markdown">
+                                                                            <p>Status OK</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="opblock-tag-section">
+                            <h3 class="opblock-tag no-desc" onclick="changeCatState(this)">
+                                <a class="nostyle"><span>users</span></a>
+                                <button aria-expanded="true" class="expand-operation" title="Collapse operation">
+                                    <i class="bi bi-chevron-up"></i>
+                                </button>
+                            </h3>
+
+                            <div class="no-margin">
+                                <div class="operation-tag-content">
+                                    <span>
+                                        <div class="opblock opblock-get">
+                                            <div class="opblock-summary opblock-summary-get">
+                                                <button aria-label="get /users" aria-expanded="true" class="opblock-summary-control" onclick="changeState(this)">
+                                                    <span class="opblock-summary-method">GET</span>
+                                                    <span class="opblock-summary-path" data-path="/ping">
+                                                        <a class="nostyle"><span>/users</span></a>
+                                                    </span>
+                                                    <div class="opblock-summary-description">List all users id and name</div>
+                                                    <i class="bi bi-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="no-margin">
+                                                <div class="opblock-body closed">
+                                                    <div class="opblock-description-wrapper">
+                                                        <div class="opblock-description">
+                                                            <div class="markdown">
+                                                                <p>Use this to obtain all the user's id and name</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-section">
+                                                        <div class="opblock-section-header">
+                                                            <div class="tab-header">
+                                                                <h4 class="opblock-title">Parameters</h4>
+                                                            </div>
+                                                            <div class="try-out">
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users'">Try it out </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="parameters-container">
+                                                            <div class="opblock-description-wrapper">
+                                                                <p>No parameters</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="responses-wrapper">
+                                                        <div class="opblock-section-header">
+                                                            <h4>Responses</h4>
+                                                            <span>Response content type</span>
+                                                            <div class="content-type-wrapper execute-content-type">
+                                                                <select aria-label="Response content type" class="content-type">
+                                                                    <option value="application/json">application/json</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
+                                                            <thead>
+                                                            <tr class="responses-header">
+                                                                <td class="col_header response-col_status">Code</td>
+                                                                <td class="col_header response-col_description">Description</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="response " data-code="200">
+                                                                <td class="response-col_status">200</td>
+                                                                <td class="response-col_description">
+                                                                    <div class="response-col_description__inner">
+                                                                        <div class="markdown">
+                                                                            <p>List all users with id and name</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="no-margin">
+                                <div class="operation-tag-content">
+                                    <span>
+                                        <div class="opblock opblock-get">
+                                            <div class="opblock-summary opblock-summary-get">
+                                                <button aria-label="get /users" aria-expanded="true" class="opblock-summary-control" onclick="changeState(this)">
+                                                    <span class="opblock-summary-method">GET</span>
+                                                    <span class="opblock-summary-path" data-path="/ping">
+                                                        <a class="nostyle"><span>/users/{id}</span></a>
+                                                    </span>
+                                                    <div class="opblock-summary-description">Get current data (name) for a user</div>
+                                                    <i class="bi bi-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="no-margin">
+                                                <div class="opblock-body closed">
+                                                    <div class="opblock-description-wrapper">
+                                                        <div class="opblock-description">
+                                                            <div class="markdown">
+                                                                <p>Get current data (name) for a user</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-section">
+                                                        <div class="opblock-section-header">
+                                                            <div class="tab-header">
+                                                                <h4 class="opblock-title">Parameters</h4>
+                                                            </div>
+                                                            <div class="try-out">
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users/1'">Try it out </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="parameters-container">
+                                                            <div class="table-container">
+                                                                <table class="parameters">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="col_header parameters-col_name">Name</th>
+                                                                        <th class="col_header parameters-col_description">Description</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr data-param-name="id" data-param-in="path">
+                                                                            <td class="parameters-col_name">
+                                                                                <div class="parameter__name required">id<span>*</span></div>
+                                                                                <div class="parameter__type">long</div>
+                                                                                <div class="parameter__in">(path)</div>
+                                                                            </td>
+                                                                            <td class="parameters-col_description">
+                                                                                <div class="markdown">
+                                                                                    <p>Pass the user id e.g. 1</p>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="responses-wrapper">
+                                                        <div class="opblock-section-header">
+                                                            <h4>Responses</h4>
+                                                            <span>Response content type</span>
+                                                            <div class="content-type-wrapper execute-content-type">
+                                                                <select aria-label="Response content type" class="content-type">
+                                                                    <option value="application/json">application/json</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
+                                                            <thead>
+                                                            <tr class="responses-header">
+                                                                <td class="col_header response-col_status">Code</td>
+                                                                <td class="col_header response-col_description">Description</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="response " data-code="200">
+                                                                <td class="response-col_status">200</td>
+                                                                <td class="response-col_description">
+                                                                    <div class="response-col_description__inner">
+                                                                        <div class="markdown">
+                                                                            <p>Get current data for a user</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -144,5 +411,40 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.2/swiper-bundle.min.js"></script>
 
 <script src="/static/js/main.js"></script>
+
+<script>
+    function changeState(element) {
+        let elToClose = element.parentElement.parentElement.getElementsByClassName("opblock-body").item(0);
+
+        if (elToClose.classList.contains("closed")) {
+            elToClose.classList.remove("closed");
+
+            element.getElementsByClassName("bi").item(0).classList.remove("bi-chevron-down");
+            element.getElementsByClassName("bi").item(0).classList.add("bi-chevron-up");
+        } else {
+            elToClose.classList.add("closed");
+
+            element.getElementsByClassName("bi").item(0).classList.add("bi-chevron-down");
+            element.getElementsByClassName("bi").item(0).classList.remove("bi-chevron-up");
+        }
+    }
+
+    function changeCatState(elH) {
+        let parentEl = elH.parentElement;
+        let element = parentEl.getElementsByClassName("no-margin").item(0);
+
+        if (element.classList.contains("closed")) {
+            element.classList.remove("closed");
+
+            parentEl.getElementsByClassName("bi").item(0).classList.add("bi-chevron-up");
+            parentEl.getElementsByClassName("bi").item(0).classList.remove("bi-chevron-down");
+        } else {
+            element.classList.add("closed");
+
+            parentEl.getElementsByClassName("bi").item(0).classList.remove("bi-chevron-up");
+            parentEl.getElementsByClassName("bi").item(0).classList.add("bi-chevron-down");
+        }
+    }
+</script>
 
 </html>
