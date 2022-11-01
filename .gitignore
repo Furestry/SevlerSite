@@ -39,3 +39,6 @@ out/
 ### CSS ###
 /src/main/resources/static/css/api.css
 /src/main/resources/static/css/style.css
+/src/main/resources/static/js/account.js
+/src/main/resources/static/js/api.js
+/src/main/resources/static/js/registration.js
