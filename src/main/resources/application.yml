@@ -28,6 +28,9 @@ spring:
 
 server:
   port: ${PORT}
+  servlet:
+    session:
+      timeout: 180m
 
 api-token:
   crc32-secret-key: 6n3X891gMO@L8vHte$0X02d@#&KHChJl
@@ -58,6 +61,9 @@ spring:
 
 server:
   port: ${SITE_PORT}
+  servlet:
+    session:
+      timeout: 180m
 
 api-token:
   crc32-secret-key: 8PMqx^izdWVWnWk3%2oyP5d5Yo2oWhJu
