@@ -1,10 +1,12 @@
 package ru.furestry.sevlersite.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.furestry.sevlersite.entities.db.ApiToken;
 import ru.furestry.sevlersite.entities.db.User;
 import ru.furestry.sevlersite.repositories.UserRepository;
 
@@ -14,6 +16,9 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
+
+    @Value("${api-token.crc32-secret-key}")
+    private String crc32SecretKey;
 
     private UserRepository userRepository;
 
@@ -30,7 +35,12 @@ public class RegistrationController {
 
     @PostMapping
     public void registerSubmit(@ModelAttribute User user, HttpServletResponse response) throws IOException {
+        String apiTokenValue = ApiToken.createToken(crc32SecretKey);
+
         user.setPassword(encoder.encode(user.getPassword()));
+        user.setToken(apiTokenValue);
+        user.setTokenHash(ApiToken.hashToken(apiTokenValue));
+
         userRepository.save(user);
 
         response.sendRedirect("/login");
