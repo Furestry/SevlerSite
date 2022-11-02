@@ -1,8 +1,10 @@
 package ru.furestry.sevlersite.controllers;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,25 +41,21 @@ public class AccountController {
     }
 
     @PostMapping("/change-password")
-    public HttpStatus changePass(
-            @PathVariable String oldPassword,
-            @PathVariable String newPassword,
-            Principal principal
-    ) {
+    public HttpStatus changePass(@ModelAttribute Password password, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
 
-        if (!encoder.encode(oldPassword).equals(user.getPassword())) {
+        if (!encoder.encode(password.getOldPassword()).equals(user.getPassword())) {
             return HttpStatus.FORBIDDEN;
         }
 
-        user.setPassword(encoder.encode(newPassword));
+        user.setPassword(encoder.encode(password.getNewPassword()));
         userRepository.save(user);
 
         return HttpStatus.OK;
     }
 
     @PostMapping("/change-token")
-    public HttpStatus changeToken(Principal principal) {
+    public ResponseEntity<String> changeToken(Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
 
         String apiTokenValue = ApiToken.createToken(crc32SecretKey);
@@ -67,7 +65,7 @@ public class AccountController {
 
         userRepository.save(user);
 
-        return HttpStatus.OK;
+        return ResponseEntity.ok(user.getTokenHash());
     }
 
     @Autowired
@@ -98,5 +96,14 @@ public class AccountController {
         public void setUserRepository(UserRepository userRepository) {
             this.userRepository = userRepository;
         }
+    }
+
+    @Data
+    public class Password {
+
+        private String oldPassword;
+
+        private String newPassword;
+
     }
 }
