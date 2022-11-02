@@ -21,9 +21,16 @@ spring:
   config:
     activate:
       on-profile: dev
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
 
 server:
   port: ${PORT}
+
+api-token:
+  crc32-secret-key: 6n3X891gMO@L8vHte$0X02d@#&KHChJl
 
 ---
 
@@ -44,6 +51,13 @@ spring:
   config:
     activate:
       on-profile: prod
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
 
 server:
   port: ${SITE_PORT}
+
+api-token:
+  crc32-secret-key: 8PMqx^izdWVWnWk3%2oyP5d5Yo2oWhJu
