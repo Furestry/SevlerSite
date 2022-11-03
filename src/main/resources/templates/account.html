@@ -90,39 +90,37 @@
         <div class="modal-content">
             <span class="anchor" id="formChangePassword"></span>
             <div class="modal-header text-center">
-                <h3 class="modal-title w-100" id="pass-modalLabel">Change Password</h3>
+                <h3 class="modal-title w-100" id="pass-modalLabel" th:text="#{account.modal.title}"></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-header text-center d-none" id="pass-error-header" style="padding: 5px">
                 <h5 class="modal-title w-100" id="pass-error" style="color: red"></h5>
             </div>
             <div class="modal-header text-center d-none" id="pass-success-header" style="padding: 5px">
-                <h5 class="modal-title w-100 text-success" id="pass-success">Password changed!</h5>
+                <h5 class="modal-title w-100 text-success" id="pass-success" th:text="#{account.modal.success}"></h5>
             </div>
             <div class="modal-body">
                 <form class="form" role="form" autocomplete="on" id="pass-form">
                     <div class="form-group">
-                        <label for="inputPasswordOld">Current Password</label>
-                        <input type="password" class="form-control" id="inputPasswordOld" required>
+                        <label for="inputPasswordOld" th:text="#{account.modal.oldPassword}"></label>
+                        <input type="password" class="form-control" id="inputPasswordOld" required="required">
                     </div>
                     <div class="form-group">
-                        <label for="inputPasswordNew">New Password</label>
-                        <input type="password" class="form-control" id="inputPasswordNew" required>
-                        <span class="form-text small text-sm text-muted">
-                            The password must be 8-32 characters, digits and underlines, and must  <em>not</em> contain spaces.
-                        </span>
+                        <label for="inputPasswordNew" th:text="#{account.modal.newPassword}"></label>
+                        <input type="password" class="form-control" id="inputPasswordNew" required="required">
+                        <span class="form-text small text-sm text-muted" th:text="#{account.modal.newPassword.description}"></span>
                     </div>
                     <div class="form-group">
-                        <label for="inputPasswordNewVerify">Verify</label>
-                        <input type="password" class="form-control" id="inputPasswordNewVerify" required>
-                        <span class="form-text small text-muted">To confirm, type the new password again.</span>
+                        <label for="inputPasswordNewVerify" th:text="#{account.modal.verifyPassword}"></label>
+                        <input type="password" class="form-control" id="inputPasswordNewVerify" required="required">
+                        <span class="form-text small text-muted" th:text="#{account.modal.verifyPassword.description}"></span>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success float-right" id="send-pass">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{account.modal.close}"></button>
+                    <button type="submit" class="btn btn-success float-right" id="send-pass" th:text="#{account.modal.save}"></button>
                 </div>
             </div>
         </div>
@@ -133,6 +131,17 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="/static/js/account.js"></script>
+<script src="/static/js/account.min.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let errOldPass = /*[[#{account.errors.oldPasswordNull}]]*/ '';
+    let errNewPass = /*[[#{account.errors.newPasswordNull}]]*/ '';
+    let errVerifyPass = /*[[#{account.errors.verifyPasswordNull}]]*/ '';
+    let errVerifyPassMatch = /*[[#{account.errors.newPassword.match}]]*/ '';
+    let errNotEquals = /*[[#{account.errors.notEquals}]]*/ '';
+    let errWrongPass = /*[[#{account.errors.wrongPassword}]]*/ '';
+    let errSome = /*[[#{account.errors.error}]]*/ '';
+    /*]]>*/
+</script>
 
 </html>
