@@ -2,14 +2,13 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SevlerSite - Registration</title>
+    <title th:text="#{registration.title}"></title>
 
     <link href="/static/favicon.ico" rel="icon">
     <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -17,7 +16,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <link href="/static/css/login.min.css" rel="stylesheet">
-
 </head>
 
 <body class="bg-gradient-primary">
@@ -31,28 +29,28 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4" th:text="#{registration.text.title}"></h1>
                             </div>
                             <form class="user" action="#" th:action="@{/registration}" method="post" th:object="${user}">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="nickname" placeholder="Username" th:field="*{username}">
+                                        <input type="text" class="form-control form-control-user" id="nickname" th:placeholder="#{registration.text.username}" th:field="*{username}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" id="password" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" id="password" th:placeholder="#{registration.text.password}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" id="repeatPassword" placeholder="Repeat Password">
+                                        <input type="password" class="form-control form-control-user" id="repeatPassword" th:placeholder="#{registration.text.repeat}">
                                     </div>
                                 </div>
-                                <input class="btn btn-primary btn-user btn-block" id="registration" type="submit" value="Register Account" />
+                                <input class="btn btn-primary btn-user btn-block" id="registration" type="submit" th:value="#{registration.text.registerAccount}" />
                                 <hr>
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="/login">Already have an account? Login!</a>
+                                <a class="small" href="/login" th:text="#{registration.text.login}"></a>
                             </div>
                         </div>
                     </div>
