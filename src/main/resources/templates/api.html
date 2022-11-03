@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>SevlerSite - API</title>
+    <title th:text="#{api.title}"></title>
 
     <link href="/static/favicon.ico" rel="icon">
     <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -32,21 +32,21 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li class="scrollto dropdown">
-                        <a class="keychainify-checked" href="/api"><span>API</span></a>
+                        <a class="keychainify-checked" href="/api"><span th:text="#{api}"></span></a>
                     </li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scrollto" href="#contact" th:text="#{contact}"></a></li>
                     <li class="scrollto dropdown" sec:authorize="isAuthenticated()">
                         <a class="keychainify-checked"><span sec:authentication="name"></span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="/account" class="keychainify-checked">Settings</a></li>
-                            <li><a href="/logout" class="keychainify-checked">Logout</a></li>
+                            <li><a href="/account" class="keychainify-checked" th:text="#{settings}"></a></li>
+                            <li><a href="/logout" class="keychainify-checked" th:text="#{logout}"></a></li>
                         </ul>
                     </li>
                     <li class="scrollto dropdown" sec:authorize="isAnonymous()">
-                        <a class="keychainify-checked"><span>Sign in</span><i class="bi bi-chevron-down"></i></a>
+                        <a class="keychainify-checked"><span th:text="#{signIn}"></span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="/login" class="keychainify-checked">Sign in</a></li>
-                            <li><a href="/registration" class="keychainify-checked">Sign up</a></li>
+                            <li><a href="/login" class="keychainify-checked" th:text="#{signIn}"></a></li>
+                            <li><a href="/registration" class="keychainify-checked" th:text="#{signUp}"></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -64,7 +64,7 @@
                     <div class="tw-mt-9">
                         <h2 class="tw-text-2xl tw-font-bold">
                             <span class="tw-mr-3">SevlerSite API V1</span>
-                            <span class="sp-status btn btn-sm btn-secondary keychainify-checked">Status
+                            <span class="sp-status btn btn-sm btn-secondary keychainify-checked" th:text="#{api.status}">
                                 <i class="bi bi-circle-fill" style="color: #5AFE51;"></i>
                             </span>
                         </h2>
@@ -72,7 +72,7 @@
                         <div class="scheme-container">
                             <section class="schemes wrapper block col-12">
                                 <label>
-                                    <span class="schemes-title">Schemes</span>
+                                    <span class="schemes-title" th:text="#{api.schemes}"></span>
                                     <select>
                                         <option value="https">https</option>
                                     </select>
@@ -83,7 +83,7 @@
                         <div class="opblock-tag-section">
                             <h3 class="opblock-tag no-desc" onclick="changeCatState(this)">
                                 <a class="nostyle"><span>ping</span></a>
-                                <button aria-expanded="true" class="expand-operation" title="Collapse operation">
+                                <button aria-expanded="true" class="expand-operation">
                                     <i class="bi bi-chevron-up"></i>
                                 </button>
                             </h3>
@@ -98,7 +98,7 @@
                                                     <span class="opblock-summary-path" data-path="/ping">
                                                         <a class="nostyle"><span>/ping</span></a>
                                                     </span>
-                                                    <div class="opblock-summary-description">Check API server status</div>
+                                                    <div class="opblock-summary-description" th:text="#{api.ping.about}"></div>
                                                     <i class="bi bi-chevron-down"></i>
                                                 </button>
                                             </div>
@@ -107,29 +107,29 @@
                                                     <div class="opblock-description-wrapper">
                                                         <div class="opblock-description">
                                                             <div class="markdown">
-                                                                <p>Check API server status</p>
+                                                                <p th:text="#{api.ping.use}"></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="opblock-section">
                                                         <div class="opblock-section-header">
                                                             <div class="tab-header">
-                                                                <h4 class="opblock-title">Parameters</h4>
+                                                                <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
                                                             </div>
                                                             <div class="try-out">
-                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/ping'">Try it out </button>
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/ping'" th:text="#{api.text.try}"></button>
                                                             </div>
                                                         </div>
                                                         <div class="parameters-container">
                                                             <div class="opblock-description-wrapper">
-                                                                <p>No parameters</p>
+                                                                <p th:text="#{api.text.noParameters}"></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="responses-wrapper">
                                                         <div class="opblock-section-header">
-                                                            <h4>Responses</h4>
-                                                            <span>Response content type</span>
+                                                            <h4 th:text="#{api.text.responses}"></h4>
+                                                            <span th:text="#{api.text.responseContentType}"></span>
                                                             <div class="content-type-wrapper execute-content-type">
                                                                 <select aria-label="Response content type" class="content-type">
                                                                     <option value="application/json">application/json</option>
@@ -139,8 +139,8 @@
                                                         <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
                                                             <thead>
                                                             <tr class="responses-header">
-                                                                <td class="col_header response-col_status">Code</td>
-                                                                <td class="col_header response-col_description">Description</td>
+                                                                <td class="col_header response-col_status" th:text="#{api.text.code}">Code</td>
+                                                                <td class="col_header response-col_description" th:text="#{api.text.description}"></td>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -149,7 +149,7 @@
                                                                 <td class="response-col_description">
                                                                     <div class="response-col_description__inner">
                                                                         <div class="markdown">
-                                                                            <p>Status OK</p>
+                                                                            <p th:text="#{api.ping.response.description}"></p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -169,7 +169,7 @@
                         <div class="opblock-tag-section">
                             <h3 class="opblock-tag no-desc" onclick="changeCatState(this)">
                                 <a class="nostyle"><span>users</span></a>
-                                <button aria-expanded="true" class="expand-operation" title="Collapse operation">
+                                <button aria-expanded="true" class="expand-operation">
                                     <i class="bi bi-chevron-up"></i>
                                 </button>
                             </h3>
@@ -184,7 +184,7 @@
                                                     <span class="opblock-summary-path" data-path="/ping">
                                                         <a class="nostyle"><span>/users</span></a>
                                                     </span>
-                                                    <div class="opblock-summary-description">List all users id and name</div>
+                                                    <div class="opblock-summary-description" th:text="#{api.users.about}"></div>
                                                     <i class="bi bi-chevron-down"></i>
                                                 </button>
                                             </div>
@@ -193,29 +193,29 @@
                                                     <div class="opblock-description-wrapper">
                                                         <div class="opblock-description">
                                                             <div class="markdown">
-                                                                <p>Use this to obtain all the user's id and name</p>
+                                                                <p th:text="#{api.users.use}"></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="opblock-section">
                                                         <div class="opblock-section-header">
                                                             <div class="tab-header">
-                                                                <h4 class="opblock-title">Parameters</h4>
+                                                                <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
                                                             </div>
                                                             <div class="try-out">
-                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users'">Try it out </button>
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users'" th:text="#{api.text.try}"></button>
                                                             </div>
                                                         </div>
                                                         <div class="parameters-container">
                                                             <div class="opblock-description-wrapper">
-                                                                <p>No parameters</p>
+                                                                <p th:text="#{api.text.noParameters}"></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="responses-wrapper">
                                                         <div class="opblock-section-header">
-                                                            <h4>Responses</h4>
-                                                            <span>Response content type</span>
+                                                            <h4 th:text="#{api.text.responses}"></h4>
+                                                            <span th:text="#{api.text.responseContentType}"></span>
                                                             <div class="content-type-wrapper execute-content-type">
                                                                 <select aria-label="Response content type" class="content-type">
                                                                     <option value="application/json">application/json</option>
@@ -225,8 +225,8 @@
                                                         <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
                                                             <thead>
                                                             <tr class="responses-header">
-                                                                <td class="col_header response-col_status">Code</td>
-                                                                <td class="col_header response-col_description">Description</td>
+                                                                <td class="col_header response-col_status" th:text="#{api.text.code}"></td>
+                                                                <td class="col_header response-col_description" th:text="#{api.text.description}"></td>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -235,7 +235,7 @@
                                                                 <td class="response-col_description">
                                                                     <div class="response-col_description__inner">
                                                                         <div class="markdown">
-                                                                            <p>List all users with id and name</p>
+                                                                            <p th:text="#{api.users.response.description}"></p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -261,7 +261,7 @@
                                                     <span class="opblock-summary-path" data-path="/ping">
                                                         <a class="nostyle"><span>/users/{id}</span></a>
                                                     </span>
-                                                    <div class="opblock-summary-description">Get current data (name) for a user</div>
+                                                    <div class="opblock-summary-description" th:text="#{api.usersById.about}"></div>
                                                     <i class="bi bi-chevron-down"></i>
                                                 </button>
                                             </div>
@@ -270,17 +270,17 @@
                                                     <div class="opblock-description-wrapper">
                                                         <div class="opblock-description">
                                                             <div class="markdown">
-                                                                <p>Get current data (name) for a user</p>
+                                                                <p th:text="#{api.usersById.use}"></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="opblock-section">
                                                         <div class="opblock-section-header">
                                                             <div class="tab-header">
-                                                                <h4 class="opblock-title">Parameters</h4>
+                                                                <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
                                                             </div>
                                                             <div class="try-out">
-                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users/1'">Try it out </button>
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users/1'" th:text="#{api.text.try}"></button>
                                                             </div>
                                                         </div>
                                                         <div class="parameters-container">
@@ -288,20 +288,20 @@
                                                                 <table class="parameters">
                                                                     <thead>
                                                                     <tr>
-                                                                        <th class="col_header parameters-col_name">Name</th>
-                                                                        <th class="col_header parameters-col_description">Description</th>
+                                                                        <th class="col_header parameters-col_name" th:text="#{api.text.parameters.name}"></th>
+                                                                        <th class="col_header parameters-col_description" th:text="#{api.text.parameters.description}"></th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr data-param-name="id" data-param-in="path">
                                                                             <td class="parameters-col_name">
                                                                                 <div class="parameter__name required">id<span>*</span></div>
-                                                                                <div class="parameter__type">long</div>
-                                                                                <div class="parameter__in">(path)</div>
+                                                                                <div class="parameter__type" th:text="#{api.text.type.long}"></div>
+                                                                                <div class="parameter__in">(<span th:text="#{api.text.path}"></span>)</div>
                                                                             </td>
                                                                             <td class="parameters-col_description">
                                                                                 <div class="markdown">
-                                                                                    <p>Pass the user id e.g. 1</p>
+                                                                                    <p th:text="#{api.usersById.parameters.description}"></p>
                                                                                 </div>
                                                                             </td>
                                                                         </tr>
@@ -312,8 +312,8 @@
                                                     </div>
                                                     <div class="responses-wrapper">
                                                         <div class="opblock-section-header">
-                                                            <h4>Responses</h4>
-                                                            <span>Response content type</span>
+                                                            <h4 th:text="#{api.text.responses}"></h4>
+                                                            <span th:text="#{api.text.responseContentType}"></span>
                                                             <div class="content-type-wrapper execute-content-type">
                                                                 <select aria-label="Response content type" class="content-type">
                                                                     <option value="application/json">application/json</option>
@@ -323,8 +323,8 @@
                                                         <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
                                                             <thead>
                                                             <tr class="responses-header">
-                                                                <td class="col_header response-col_status">Code</td>
-                                                                <td class="col_header response-col_description">Description</td>
+                                                                <td class="col_header response-col_status" th:text="#{api.text.code}"></td>
+                                                                <td class="col_header response-col_description" th:text="#{api.text.description}"></td>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -333,7 +333,7 @@
                                                                 <td class="response-col_description">
                                                                     <div class="response-col_description__inner">
                                                                         <div class="markdown">
-                                                                            <p>Get current data for a user</p>
+                                                                            <p th:text="#{api.usersById.response.description}"></p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -366,23 +366,23 @@
                         <img src="/static/img/logo.png" alt="Logo">
                         <span>Sevler Site</span>
                     </a>
-                    <p>Test Text.</p>
+                    <p th:text="#{text.footer}"></p>
                     <div class="social-links mt-3">
                         <a href="https://github.com/Furestry" class="github"><i class="bi bi-github"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-6 footer-links">
-                    <h4>Useful Links</h4>
+                    <h4 th:text="#{footer.links.title}"></h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/api">API</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="/registration">Registration</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/" th:text="#{footer.links.home}"></a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/api" th:text="#{footer.links.api}"></a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="/registration" th:text="#{footer.links.registration}"></a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start" id="contact">
-                    <h4>Contact Me</h4>
+                    <h4 th:text="#{footer.contact}"></h4>
                     <p>
                         <strong>Telegram:</strong> @sevler<br>
                         <strong>Discord:</strong> Sevler#0099<br>
@@ -397,7 +397,8 @@
 
     <div class="container">
         <div class="copyright">
-            &copy; Powered by <strong><span><a href="https://github.com/Furestry" class="bi bi-github"> Sevler</a></span></strong>
+            <span th:text="#{text.copyright}"></span>
+            <strong><span><a href="https://github.com/Furestry" class="bi bi-github"> Sevler</a></span></strong>
         </div>
     </div>
 </footer>

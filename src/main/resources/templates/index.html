@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SevlerSite - Main</title>
+  <title th:text="#{index.title}"></title>
 
   <link href="/static/favicon.ico" rel="icon">
   <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -31,21 +31,21 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li class="scrollto dropdown">
-            <a class="keychainify-checked" href="/api"><span>API</span></a>
+            <a class="keychainify-checked" href="/api"><span th:text="#{api}">API</span></a>
           </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#contact" th:text="#{contact}"></a></li>
           <li class="scrollto dropdown" sec:authorize="isAuthenticated()">
             <a class="keychainify-checked"><span sec:authentication="name"></span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="/account" class="keychainify-checked">Settings</a></li>
-              <li><a href="/logout" class="keychainify-checked">Logout</a></li>
+              <li><a href="/account" class="keychainify-checked" th:text="#{settings}"></a></li>
+              <li><a href="/logout" class="keychainify-checked" th:text="#{logout}"></a></li>
             </ul>
           </li>
           <li class="scrollto dropdown" sec:authorize="isAnonymous()">
-            <a class="keychainify-checked"><span>Sign in</span><i class="bi bi-chevron-down"></i></a>
+            <a class="keychainify-checked"><span th:text="#{signIn}"></span><i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="/login" class="keychainify-checked">Sign in</a></li>
-              <li><a href="/registration" class="keychainify-checked">Sign up</a></li>
+              <li><a href="/login" class="keychainify-checked" th:text="#{signIn}"></a></li>
+              <li><a href="/registration" class="keychainify-checked" th:text="#{signUp}"></a></li>
             </ul>
           </li>
         </ul>
@@ -60,19 +60,19 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">My first website with microservices</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">With RestAPI</h2>
+          <h1 data-aos="fade-up" th:text="#{index.text.about}"></h1>
+          <h2 data-aos="fade-up" data-aos-delay="400" th:text="#{index.text.rest}"></h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
               <ul style="list-style: none">
                 <li class="scrollto dropdown" style="list-style: none" sec:authorize="isAuthenticated()">
-                  <a href="/api" class="keychainify-checked"><span>API</span></a>
+                  <a href="/api" class="keychainify-checked"><span th:text="#{api}"></span></a>
                 </li>
                 <li class="scrollto dropdown" style="list-style: none" sec:authorize="isAnonymous()">
                   <a class="keychainify-checked"><span>Sign in</span><i class="bi bi-chevron-down"></i></a>
                   <ul>
-                    <li style="list-style: none"><a href="/login" class="keychainify-checked">Sign in</a></li>
-                    <li style="list-style: none"><a href="/registration" class="keychainify-checked">Sign up</a></li>
+                    <li style="list-style: none"><a href="/login" class="keychainify-checked" th:text="#{signIn}"></a></li>
+                    <li style="list-style: none"><a href="/registration" class="keychainify-checked" th:text="#{signUp}"></a></li>
                   </ul>
                 </li>
               </ul>
@@ -97,23 +97,23 @@
               <img src="/static/img/logo.png" alt="Logo">
               <span>Sevler Site</span>
             </a>
-            <p>Test Text.</p>
+            <p th:text="#{text.footer}"></p>
             <div class="social-links mt-3">
               <a href="https://github.com/Furestry" class="github"><i class="bi bi-github"></i></a>
             </div>
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4 th:text="#{footer.links.title}"></h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="/api">API</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="/registration">Registration</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/" th:text="#{footer.links.home}"></a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/api" th:text="#{footer.links.api}"></a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/registration" th:text="#{footer.links.registration}"></a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start" id="contact">
-            <h4>Contact Me</h4>
+            <h4 th:text="#{footer.contact}"></h4>
             <p>
               <strong>Telegram:</strong> @sevler<br>
               <strong>Discord:</strong> Sevler#0099<br>
@@ -128,7 +128,8 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Powered by <strong><span><a href="https://github.com/Furestry" class="bi bi-github"> Sevler</a></span></strong>
+        <span th:text="#{text.copyright}"></span>
+        <strong><span><a href="https://github.com/Furestry" class="bi bi-github"> Sevler</a></span></strong>
       </div>
     </div>
   </footer>
