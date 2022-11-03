@@ -2,14 +2,13 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SevlerSite - Login</title>
+    <title th:text="#{login.title}"></title>
 
     <link href="/static/favicon.ico" rel="icon">
     <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -17,7 +16,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <link href="/static/css/login.min.css" rel="stylesheet">
-
 </head>
 
 <body class="bg-gradient-primary">
@@ -31,25 +29,23 @@
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                    <div th:if="${param.error}" class="alert alert-error">
-                                        Incorrect username or password
-                                    </div>
+                                    <div th:if="${param.error}" class="alert alert-error" th:text="#{login.error.incorrect}"></div>
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4" th:text="#{login.text.title}"></h1>
                                     </div>
                                     <form class="user" th:action="@{/login}" method="post">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="userNameHelp" placeholder="Enter Username...">
+                                            <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="userNameHelp" th:placeholder="#{login.text.enterUsername}">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="pass" name="pass" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="pass" name="pass" th:placeholder="#{login.text.password}">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" th:text="#{login.text.login}"></button>
                                         <hr>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="/registration">Create an Account!</a>
+                                        <a class="small" href="/registration" th:text="#{login.text.createAccount}"></a>
                                     </div>
                                 </div>
                             </div>
