@@ -67,5 +67,12 @@
 
 <script src="/static/js/login.min.js"></script>
 <script src="/static/js/registration.min.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let errNotEquals = /*[[#{registration.error.notEquals}]]*/ '';
+    let errLength = /*[[#{registration.error.length}]]*/ '';
+    let errNick = /*[[#{registration.error.nick}]]*/ '';
+    /*]]>*/
+</script>
 
 </html>
