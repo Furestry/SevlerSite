@@ -22,9 +22,15 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                     <ol class="breadcrumb mb-0">
-                        <li class="ml-auto"><a href="/logout">Logout</a></li>
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">User</li>
+                        <li class="ml-5">
+                            <select class="selectpicker" data-width="fit">
+                                <option data-content='<span class="flag-icon flag-icon-us"></span> English' th:text="#{pick.eng}"></option>
+                                <option data-content='<span class="flag-icon flag-icon-mx"></span> Russian' th:text="#{pick.ru}"></option>
+                            </select>
+                        </li>
+                        <li style="margin-left: 10px;"><a href="/logout" th:text="#{account.logout}"></a></li>
+                        <li class="breadcrumb-item"><a href="/" th:text="#{account.home}"></a></li>
+                        <li class="breadcrumb-item active" aria-current="page" th:text="#{account.user}"></li>
                     </ol>
                 </nav>
             </div>
@@ -52,7 +58,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Username</p>
+                                <p class="mb-0" th:text="#{account.username}"></p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0" th:text="${user.getUsername()}"></p>
@@ -61,20 +67,20 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Password</p>
+                                <p class="mb-0"th:text="#{account.password}"></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="btn btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#pass-modal">Change Password</p>
+                                <p class="btn btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#pass-modal" th:text="#{account.changePassword}"></p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">API Token</p>
+                                <p class="mb-0" th:text="#{account.apiToken}"></p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0" id="hash" th:text="${user.getTokenHash()}"></p>
-                                <p class="mt-2 mb-0 btn btn-sm" id="change-token"> Change Token</p>
+                                <p class="mt-2 mb-0 btn btn-sm" id="change-token" th:text="#{account.changeToken}"></p>
                             </div>
                         </div>
                     </div>
@@ -89,26 +95,32 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <span class="anchor" id="formChangePassword"></span>
-            <div class="modal-header">
-                <h3 class="modal-title" id="pass-modalLabel">Change Password</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100" id="pass-modalLabel">Change Password</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-header text-center d-none" id="pass-error-header" style="padding: 5px">
+                <h5 class="modal-title w-100" id="pass-error" style="color: red"></h5>
+            </div>
+            <div class="modal-header text-center d-none" id="pass-success-header" style="padding: 5px">
+                <h5 class="modal-title w-100 text-success" id="pass-success">Password changed!</h5>
             </div>
             <div class="modal-body">
-                <form class="form" role="form" autocomplete="off">
+                <form class="form" role="form" autocomplete="on" id="pass-form">
                     <div class="form-group">
                         <label for="inputPasswordOld">Current Password</label>
-                        <input type="password" class="form-control" id="inputPasswordOld" required="">
+                        <input type="password" class="form-control" id="inputPasswordOld" required>
                     </div>
                     <div class="form-group">
                         <label for="inputPasswordNew">New Password</label>
-                        <input type="password" class="form-control" id="inputPasswordNew" required="">
-                        <span class="form-text small text-muted">
-                            The password must be 8-20 characters, and must <em>not</em> contain spaces.
+                        <input type="password" class="form-control" id="inputPasswordNew" required>
+                        <span class="form-text small text-sm text-muted">
+                            The password must be 8-32 characters, digits and underlines, and must  <em>not</em> contain spaces.
                         </span>
                     </div>
                     <div class="form-group">
                         <label for="inputPasswordNewVerify">Verify</label>
-                        <input type="password" class="form-control" id="inputPasswordNewVerify" required="">
+                        <input type="password" class="form-control" id="inputPasswordNewVerify" required>
                         <span class="form-text small text-muted">To confirm, type the new password again.</span>
                     </div>
                 </form>
