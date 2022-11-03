@@ -41,17 +41,17 @@ public class AccountController {
     }
 
     @PostMapping("/change-password")
-    public HttpStatus changePass(@ModelAttribute Password password, Principal principal) {
+    public ResponseEntity<String> changePass(@ModelAttribute Password password, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
 
-        if (!encoder.encode(password.getOldPassword()).equals(user.getPassword())) {
-            return HttpStatus.FORBIDDEN;
+        if (!encoder.matches(password.getOldPassword(), user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
         user.setPassword(encoder.encode(password.getNewPassword()));
         userRepository.save(user);
 
-        return HttpStatus.OK;
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/change-token")
