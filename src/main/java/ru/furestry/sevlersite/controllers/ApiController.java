@@ -3,13 +3,11 @@ package ru.furestry.sevlersite.controllers;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.furestry.sevlersite.entities.db.User;
 import ru.furestry.sevlersite.repositories.UserRepository;
 
@@ -52,12 +50,22 @@ public class ApiController {
         public ResponseEntity<APIUser> getUserById(@PathVariable Long userId) {
             User user = userRepository.findById(userId).orElse(null);
 
-            if (user != null) {
-                APIUser apiUser = new APIUser(userId, user.getUsername());
-                return ResponseEntity.ok(apiUser);
-            } else {
+            if (user == null) {
                 return ResponseEntity.notFound().build();
             }
+
+            return ResponseEntity.ok(new APIUser(userId, user.getUsername()));
+        }
+
+        @GetMapping(value = "/users/me")
+        public ResponseEntity<APIUser> getMe(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+            User user = userRepository.findByTokenHash(token);
+
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+
+            return ResponseEntity.ok(new APIUser(user.getId(), user.getUsername()));
         }
 
         @Autowired
