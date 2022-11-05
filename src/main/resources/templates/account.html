@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <link href="/static/css/style.min.css" rel="stylesheet">
 </head>
@@ -74,6 +75,10 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0" id="hash" th:text="${user.getTokenHash()}"></p>
+                                <div class="acc-tooltip">
+                                    <span class="acc-tooltiptext" id="tooltip">Copy to clipboard</span>
+                                    <i class="btn btn-sm mt-2 mb-0 bi bi-clipboard" id="clipboard"></i>
+                                </div>
                                 <p class="mt-2 mb-0 btn btn-sm" id="change-token" th:text="#{account.changeToken}"></p>
                             </div>
                         </div>
