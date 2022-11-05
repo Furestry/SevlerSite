@@ -76,7 +76,7 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0" id="hash" th:text="${user.getTokenHash()}"></p>
                                 <div class="acc-tooltip">
-                                    <span class="acc-tooltiptext" id="tooltip">Copy to clipboard</span>
+                                    <span class="acc-tooltiptext" id="tooltip" th:text="#{account.text.toCopy}"></span>
                                     <i class="btn btn-sm mt-2 mb-0 bi bi-clipboard" id="clipboard"></i>
                                 </div>
                                 <p class="mt-2 mb-0 btn btn-sm" id="change-token" th:text="#{account.changeToken}"></p>
@@ -146,6 +146,8 @@
     let errNotEquals = /*[[#{account.errors.notEquals}]]*/ '';
     let errWrongPass = /*[[#{account.errors.wrongPassword}]]*/ '';
     let errSome = /*[[#{account.errors.error}]]*/ '';
+    let toCopy = /*[[#{account.text.toCopy}]]*/ '';
+    let copied = /*[[#{account.text.copied}]]*/ '';
     /*]]>*/
 </script>
 
