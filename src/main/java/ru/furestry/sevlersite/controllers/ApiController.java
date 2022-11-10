@@ -86,7 +86,7 @@ public class ApiController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
-            return ResponseEntity.ok(commentRepository.findByAuthorId(user.getId()));
+            return ResponseEntity.ok(commentRepository.findAllByAuthorId(user.getId()));
         }
 
         @GetMapping(value = "/comments/{commentId}")
@@ -102,7 +102,7 @@ public class ApiController {
 
         @GetMapping(value = "/comments/user/{authorId}")
         public ResponseEntity<Collection<Comment>> getCommentByUserId(@PathVariable Long authorId) {
-            Collection<Comment> comments = commentRepository.findByAuthorId(authorId);
+            Collection<Comment> comments = commentRepository.findAllByAuthorId(authorId);
 
             if (comments == null) {
                 return ResponseEntity.notFound().build();
