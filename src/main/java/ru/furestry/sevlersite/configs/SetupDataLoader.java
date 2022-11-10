@@ -40,13 +40,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
-
-        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-
-        User user = new User();
-        user.setRoles(Arrays.asList(adminRole));
-
-        userRepository.save(user);
     }
 
     @Transactional
