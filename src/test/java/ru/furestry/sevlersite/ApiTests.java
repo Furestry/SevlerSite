@@ -43,9 +43,9 @@ public class ApiTests {
 
     @Test
     public void usersByIdReturnOk() throws Exception {
-        mockMvc.perform(get(apiUrl + "users/2"))
+        mockMvc.perform(get(apiUrl + "users/21"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("{\"id\":2,\"username\":\"Test\"}")));
+                .andExpect(content().string(containsString("{\"id\":21,\"username\":\"Test\"}")));
     }
 
     @Test
@@ -57,10 +57,10 @@ public class ApiTests {
     @Test
     public void usersMeReturnOk() throws Exception {
         mockMvc.perform(get(apiUrl + "users/me")
-                        .header("Authorization", "23a7f64b354c87c39124f8e5e198974c38a4736b6c5a76e657482c46908cdeb6")
+                        .header("Authorization", "13df7edb91e2e85dd568bbef4c395c4e96e6fdabf909757f2a35246aa9f25b65")
                 )
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("{\"id\":2,\"username\":\"Test\"}")));
+                .andExpect(content().string(containsString("{\"id\":21,\"username\":\"Test\"}")));
     }
 
     @Test
