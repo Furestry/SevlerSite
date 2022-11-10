@@ -20,10 +20,10 @@ public class Comment {
     private LocalDateTime commentedAt;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name="user_id", referencedColumnName = "id" , nullable=false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="author_id", nullable=false)
+    @JoinColumn(name="author_id", referencedColumnName = "id", nullable=false)
     private User author;
 }
