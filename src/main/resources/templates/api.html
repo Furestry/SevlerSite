@@ -278,7 +278,7 @@
                                                                 <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
                                                             </div>
                                                             <div class="try-out">
-                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users/1'" th:text="#{api.text.try}"></button>
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users/20'" th:text="#{api.text.try}"></button>
                                                             </div>
                                                         </div>
                                                         <div class="parameters-container">
@@ -376,7 +376,7 @@
                                                                 <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
                                                             </div>
                                                             <div class="try-out">
-                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users/1'" th:text="#{api.text.try}"></button>
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users/me'" th:text="#{api.text.try}"></button>
                                                             </div>
                                                         </div>
                                                         <div class="parameters-container">
@@ -430,6 +430,386 @@
                                                                     <div class="response-col_description__inner">
                                                                         <div class="markdown">
                                                                             <p th:text="#{api.usersMe.response.description}"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="opblock-tag-section">
+                            <h3 class="opblock-tag no-desc" onclick="changeCatState(this)">
+                                <a class="nostyle"><span>comments</span></a>
+                                <button aria-expanded="true" class="expand-operation">
+                                    <i class="bi bi-chevron-up"></i>
+                                </button>
+                            </h3>
+
+                            <div class="no-margin">
+                                <div class="operation-tag-content">
+                                    <span>
+                                        <div class="opblock opblock-get">
+                                            <div class="opblock-summary opblock-summary-get">
+                                                <button aria-label="get /users" aria-expanded="true" class="opblock-summary-control" onclick="changeState(this)">
+                                                    <span class="opblock-summary-method">GET</span>
+                                                    <span class="opblock-summary-path" data-path="/ping">
+                                                        <a class="nostyle"><span>/comments</span></a>
+                                                    </span>
+                                                    <div class="opblock-summary-description" th:text="#{api.comments.about}"></div>
+                                                    <i class="bi bi-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="no-margin">
+                                                <div class="opblock-body closed">
+                                                    <div class="opblock-description-wrapper">
+                                                        <div class="opblock-description">
+                                                            <div class="markdown">
+                                                                <p th:text="#{api.comments.use}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-section">
+                                                        <div class="opblock-section-header">
+                                                            <div class="tab-header">
+                                                                <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
+                                                            </div>
+                                                            <div class="try-out">
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/comments'" th:text="#{api.text.try}"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="parameters-container">
+                                                            <div class="opblock-description-wrapper">
+                                                                <p th:text="#{api.text.noParameters}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="responses-wrapper">
+                                                        <div class="opblock-section-header">
+                                                            <h4 th:text="#{api.text.responses}"></h4>
+                                                            <span th:text="#{api.text.responseContentType}"></span>
+                                                            <div class="content-type-wrapper execute-content-type">
+                                                                <select aria-label="Response content type" class="content-type">
+                                                                    <option value="application/json">application/json</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
+                                                            <thead>
+                                                            <tr class="responses-header">
+                                                                <td class="col_header response-col_status" th:text="#{api.text.code}"></td>
+                                                                <td class="col_header response-col_description" th:text="#{api.text.description}"></td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="response " data-code="200">
+                                                                <td class="response-col_status">200</td>
+                                                                <td class="response-col_description">
+                                                                    <div class="response-col_description__inner">
+                                                                        <div class="markdown">
+                                                                            <p th:text="#{api.comments.response.description}"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="no-margin">
+                                <div class="operation-tag-content">
+                                    <span>
+                                        <div class="opblock opblock-get">
+                                            <div class="opblock-summary opblock-summary-get">
+                                                <button aria-label="get /users" aria-expanded="true" class="opblock-summary-control" onclick="changeState(this)">
+                                                    <span class="opblock-summary-method">GET</span>
+                                                    <span class="opblock-summary-path" data-path="/ping">
+                                                        <a class="nostyle"><span>/comments/{id}</span></a>
+                                                    </span>
+                                                    <div class="opblock-summary-description" th:text="#{api.commentsById.about}"></div>
+                                                    <i class="bi bi-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="no-margin">
+                                                <div class="opblock-body closed">
+                                                    <div class="opblock-description-wrapper">
+                                                        <div class="opblock-description">
+                                                            <div class="markdown">
+                                                                <p th:text="#{api.commentsById.use}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-section">
+                                                        <div class="opblock-section-header">
+                                                            <div class="tab-header">
+                                                                <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
+                                                            </div>
+                                                            <div class="try-out">
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/users/20'" th:text="#{api.text.try}"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="parameters-container">
+                                                            <div class="table-container">
+                                                                <table class="parameters">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="col_header parameters-col_name" th:text="#{api.text.parameters.name}"></th>
+                                                                        <th class="col_header parameters-col_description" th:text="#{api.text.parameters.description}"></th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr data-param-name="id" data-param-in="path">
+                                                                            <td class="parameters-col_name">
+                                                                                <div class="parameter__name required" th:text="#{api.text.id}"><span>*</span></div>
+                                                                                <div class="parameter__type" th:text="#{api.text.type.long}"></div>
+                                                                                <div class="parameter__in">(<span th:text="#{api.text.path}"></span>)</div>
+                                                                            </td>
+                                                                            <td class="parameters-col_description">
+                                                                                <div class="markdown">
+                                                                                    <p th:text="#{api.commentsById.parameters.description}"></p>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="responses-wrapper">
+                                                        <div class="opblock-section-header">
+                                                            <h4 th:text="#{api.text.responses}"></h4>
+                                                            <span th:text="#{api.text.responseContentType}"></span>
+                                                            <div class="content-type-wrapper execute-content-type">
+                                                                <select aria-label="Response content type" class="content-type">
+                                                                    <option value="application/json">application/json</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
+                                                            <thead>
+                                                            <tr class="responses-header">
+                                                                <td class="col_header response-col_status" th:text="#{api.text.code}"></td>
+                                                                <td class="col_header response-col_description" th:text="#{api.text.description}"></td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="response " data-code="200">
+                                                                <td class="response-col_status">200</td>
+                                                                <td class="response-col_description">
+                                                                    <div class="response-col_description__inner">
+                                                                        <div class="markdown">
+                                                                            <p th:text="#{api.commentsById.response.description}"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="no-margin">
+                                <div class="operation-tag-content">
+                                    <span>
+                                        <div class="opblock opblock-get">
+                                            <div class="opblock-summary opblock-summary-get">
+                                                <button aria-label="get /users" aria-expanded="true" class="opblock-summary-control" onclick="changeState(this)">
+                                                    <span class="opblock-summary-method">GET</span>
+                                                    <span class="opblock-summary-path" data-path="/ping">
+                                                        <a class="nostyle"><span>/comments/user/{id}</span></a>
+                                                    </span>
+                                                    <div class="opblock-summary-description" th:text="#{api.commentsByAuthorId.about}"></div>
+                                                    <i class="bi bi-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="no-margin">
+                                                <div class="opblock-body closed">
+                                                    <div class="opblock-description-wrapper">
+                                                        <div class="opblock-description">
+                                                            <div class="markdown">
+                                                                <p th:text="#{api.commentsByAuthorId.use}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-section">
+                                                        <div class="opblock-section-header">
+                                                            <div class="tab-header">
+                                                                <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
+                                                            </div>
+                                                            <div class="try-out">
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/comments/user/20'" th:text="#{api.text.try}"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="parameters-container">
+                                                            <div class="table-container">
+                                                                <table class="parameters">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="col_header parameters-col_name" th:text="#{api.text.parameters.name}"></th>
+                                                                        <th class="col_header parameters-col_description" th:text="#{api.text.parameters.description}"></th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr data-param-name="id" data-param-in="path">
+                                                                            <td class="parameters-col_name">
+                                                                                <div class="parameter__name required" th:text="#{api.text.id}"><span>*</span></div>
+                                                                                <div class="parameter__type" th:text="#{api.text.type.long}"></div>
+                                                                                <div class="parameter__in">(<span th:text="#{api.text.path}"></span>)</div>
+                                                                            </td>
+                                                                            <td class="parameters-col_description">
+                                                                                <div class="markdown">
+                                                                                    <p th:text="#{api.commentsByAuthorId.parameters.description}"></p>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="responses-wrapper">
+                                                        <div class="opblock-section-header">
+                                                            <h4 th:text="#{api.text.responses}"></h4>
+                                                            <span th:text="#{api.text.responseContentType}"></span>
+                                                            <div class="content-type-wrapper execute-content-type">
+                                                                <select aria-label="Response content type" class="content-type">
+                                                                    <option value="application/json">application/json</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
+                                                            <thead>
+                                                            <tr class="responses-header">
+                                                                <td class="col_header response-col_status" th:text="#{api.text.code}"></td>
+                                                                <td class="col_header response-col_description" th:text="#{api.text.description}"></td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="response " data-code="200">
+                                                                <td class="response-col_status">200</td>
+                                                                <td class="response-col_description">
+                                                                    <div class="response-col_description__inner">
+                                                                        <div class="markdown">
+                                                                            <p th:text="#{api.commentsByAuthorId.response.description}"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="no-margin">
+                                <div class="operation-tag-content">
+                                    <span>
+                                        <div class="opblock opblock-get">
+                                            <div class="opblock-summary opblock-summary-get">
+                                                <button aria-label="get /users" aria-expanded="true" class="opblock-summary-control" onclick="changeState(this)">
+                                                    <span class="opblock-summary-method">GET</span>
+                                                    <span class="opblock-summary-path" data-path="/ping">
+                                                        <a class="nostyle"><span>/comments/me</span></a>
+                                                    </span>
+                                                    <div class="opblock-summary-description" th:text="#{api.commentsMe.about}"></div>
+                                                    <i class="bi bi-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="no-margin">
+                                                <div class="opblock-body closed">
+                                                    <div class="opblock-description-wrapper">
+                                                        <div class="opblock-description">
+                                                            <div class="markdown">
+                                                                <p th:text="#{api.commentsMe.use}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="opblock-section">
+                                                        <div class="opblock-section-header">
+                                                            <div class="tab-header">
+                                                                <h4 class="opblock-title" th:text="#{api.text.parameters}"></h4>
+                                                            </div>
+                                                            <div class="try-out">
+                                                                <button class="btn try-out__btn" onclick="location.href='/api/v1/comments/1'" th:text="#{api.text.try}"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="parameters-container">
+                                                            <div class="table-container">
+                                                                <table class="parameters">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="col_header parameters-col_name" th:text="#{api.text.parameters.name}"></th>
+                                                                        <th class="col_header parameters-col_description" th:text="#{api.text.parameters.description}"></th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr data-param-name="id" data-param-in="path">
+                                                                            <td class="parameters-col_name">
+                                                                                <div class="parameter__name required" th:text="#{api.text.token}"><span>*</span></div>
+                                                                                <div class="parameter__type" th:text="#{api.text.type.string}"></div>
+                                                                                <div class="parameter__in">(<span th:text="#{api.text.header.auth}"></span>)</div>
+                                                                            </td>
+                                                                            <td class="parameters-col_description">
+                                                                                <div class="markdown">
+                                                                                    <p th:text="#{api.commentsMe.parameters.description}"></p>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="responses-wrapper">
+                                                        <div class="opblock-section-header">
+                                                            <h4 th:text="#{api.text.responses}"></h4>
+                                                            <span th:text="#{api.text.responseContentType}"></span>
+                                                            <div class="content-type-wrapper execute-content-type">
+                                                                <select aria-label="Response content type" class="content-type">
+                                                                    <option value="application/json">application/json</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="responses-inner"><table aria-live="polite" class="responses-table" role="region">
+                                                            <thead>
+                                                            <tr class="responses-header">
+                                                                <td class="col_header response-col_status" th:text="#{api.text.code}"></td>
+                                                                <td class="col_header response-col_description" th:text="#{api.text.description}"></td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr class="response " data-code="200">
+                                                                <td class="response-col_status">200</td>
+                                                                <td class="response-col_description">
+                                                                    <div class="response-col_description__inner">
+                                                                        <div class="markdown">
+                                                                            <p th:text="#{api.commentsMe.response.description}"></p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
