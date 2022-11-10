@@ -1,7 +1,22 @@
 spring:
   profiles:
     active: dev
+  mvc:
+    static-path-pattern: /static/**
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
 
+server:
+  servlet:
+    session:
+      timeout: 24h
 ---
 
 spring:
@@ -13,24 +28,12 @@ spring:
     multipart:
       max-request-size: 16MB
       max-file-size: 16MB
-  mvc:
-    static-path-pattern: /static/**
-  jpa:
-    hibernate:
-      ddl-auto: update
   config:
     activate:
       on-profile: dev
-  session:
-    store-type: jdbc
-    jdbc:
-      initialize-schema: always
 
 server:
   port: ${PORT}
-  servlet:
-    session:
-      timeout: 24h
 
 api-token:
   crc32-secret-key: 6n3X891gMO@L8vHte$0X02d@#&KHChJl
@@ -46,24 +49,12 @@ spring:
     multipart:
       max-request-size: 8MB
       max-file-size: 8MB
-  mvc:
-    static-path-pattern: /static/**
-  jpa:
-    hibernate:
-      ddl-auto: update
   config:
     activate:
       on-profile: prod
-  session:
-    store-type: jdbc
-    jdbc:
-      initialize-schema: always
 
 server:
   port: ${SITE_PORT}
-  servlet:
-    session:
-      timeout: 24h
 
 api-token:
   crc32-secret-key: 8PMqx^izdWVWnWk3%2oyP5d5Yo2oWhJu
