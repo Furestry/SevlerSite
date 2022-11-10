@@ -1,9 +1,12 @@
 package ru.furestry.sevlersite.entities.db;
 
 import lombok.Data;
+import org.springframework.context.support.BeanDefinitionDsl;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Set;
 
 @Data
 @Entity
@@ -28,4 +31,19 @@ public class User implements Serializable {
 
     @Lob
     private byte[] avatar;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> profileComments;
+
+    @OneToMany(mappedBy = "author")
+    private Set<Comment> comments;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 }
