@@ -1,4 +1,4 @@
-package ru.furestry.sevlersite.entities.db;
+package ru.furestry.sevlersite.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
