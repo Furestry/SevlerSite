@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.furestry.sevlersite.entities.db.ApiToken;
+import ru.furestry.sevlersite.entities.ApiToken;
 import ru.furestry.sevlersite.entities.db.User;
 import ru.furestry.sevlersite.repositories.UserRepository;
 

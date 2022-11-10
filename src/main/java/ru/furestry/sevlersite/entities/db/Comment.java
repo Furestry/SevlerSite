@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Table(name = "Comments")
 public class Comment {
 
     @Id
@@ -20,10 +21,9 @@ public class Comment {
     private LocalDateTime commentedAt;
 
     @ManyToOne
-    @JoinColumn(name="user_id", referencedColumnName = "id" , nullable=false)
+    @JoinColumn(name="user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name="author_id", referencedColumnName = "id", nullable=false)
-    private User author;
+    @Column(name = "author_id", nullable = false)
+    private Long authorId;
 }

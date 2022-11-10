@@ -11,6 +11,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     private String name;
@@ -24,7 +25,8 @@ public class Role {
             joinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "privilege_id", referencedColumnName = "id"))
+                    name = "privilege_id", referencedColumnName = "id")
+    )
     private Collection<Privilege> privileges;
 
 }

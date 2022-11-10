@@ -1,7 +1,6 @@
 package ru.furestry.sevlersite.entities.db;
 
 import lombok.Data;
-import org.springframework.context.support.BeanDefinitionDsl;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -33,17 +32,15 @@ public class User implements Serializable {
     private byte[] avatar;
 
     @OneToMany(mappedBy = "user")
-    private Set<Comment> profileComments;
-
-    @OneToMany(mappedBy = "author")
     private Set<Comment> comments;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
+                    name = "role_id", referencedColumnName = "id")
+    )
     private Collection<Role> roles;
 }
