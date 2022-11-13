@@ -13,6 +13,7 @@ import ru.furestry.sevlersite.entities.db.User;
 import ru.furestry.sevlersite.repositories.interfaces.CommentRepository;
 import ru.furestry.sevlersite.repositories.interfaces.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -100,6 +101,7 @@ public class ApiController {
             return ResponseEntity.ok(comment);
         }
 
+        @Transactional
         @GetMapping(value = "/comments/user/{authorId}")
         public ResponseEntity<Collection<Comment>> getCommentByUserId(@PathVariable Long authorId) {
             Collection<Comment> comments = commentRepository.findAllByAuthorId(authorId);
