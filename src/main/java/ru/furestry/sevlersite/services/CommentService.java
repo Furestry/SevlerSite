@@ -13,7 +13,7 @@ import java.io.IOException;
 @Primary
 @Service
 @AllArgsConstructor
-public class CommentsService implements UpdateService {
+public class CommentService implements UpdateService {
 
     private final EmitterRepository emitterRepository;
     private final EventMapper eventMapper;
