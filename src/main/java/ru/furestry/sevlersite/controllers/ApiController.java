@@ -104,7 +104,7 @@ public class ApiController {
         public ResponseEntity<Collection<Comment>> getCommentByUserId(@PathVariable Long authorId) {
             Collection<Comment> comments = commentRepository.findAllByAuthorId(authorId);
 
-            if (comments == null) {
+            if (comments.size() == 0) {
                 return ResponseEntity.notFound().build();
             }
 
