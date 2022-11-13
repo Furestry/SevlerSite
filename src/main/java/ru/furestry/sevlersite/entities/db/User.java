@@ -1,5 +1,6 @@
 package ru.furestry.sevlersite.entities.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -31,9 +32,11 @@ public class User implements Serializable {
     @Lob
     private byte[] avatar;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
