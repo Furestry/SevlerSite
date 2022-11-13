@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title th:text="User "></title>
+  <title th:text="#{user.title} + ' ' + ${user.getUsername()}"></title>
 
   <link href="/static/favicon.ico" rel="icon">
   <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -30,7 +30,7 @@
     <nav id="navbar" class="navbar">
       <ul>
         <li class="scrollto dropdown">
-          <a class="keychainify-checked" href="/api"><span th:text="#{api}">API</span></a>
+          <a class="keychainify-checked" href="/api"><span th:text="#{api}"></span></a>
         </li>
         <li><a class="nav-link scrollto" href="#contact" th:text="#{contact}"></a></li>
         <li class="scrollto dropdown" sec:authorize="isAuthenticated()">
@@ -54,15 +54,59 @@
   </div>
 </header>
 
-<section id="hero" class="hero d-flex align-items-center">
-
-  <div class="container">
+<section style="background-color: #eee">
+  <div class="container py-5">
     <div class="row">
-      <div class="col-lg-6 d-flex flex-column justify-content-center">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img th:src="${userAvatar} != null ? ${'data:image;base64,' + userAvatar} : '/static/img/default_avatar.png'"
+               th:alt="${user.getUsername() + '''s Avatar'}" class="rounded-circle img-fluid profile-pic">
+            <h5 class="my-3" th:text="${user.getUsername()}"></h5>
+          </div>
+        </div>
+      </div>
 
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0" th:text="#{account.username}"></p>
+              </div>
+              <div class="col-sm-9">
+                <span class="text-muted mb-0" th:text="${user.getUsername()}"></span>
+                <span class="text-muted mb-0" th:if="${isAdmin}">
+                  (<b style="color: red">Admin</b>)
+                </span>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <section class="pt-0 pb-2 overflow-auto">
+                <h4 class="mb-1 pb-2 text-center" th:text="#{user.comments.title}"></h4>
+
+                <div class="container">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-md-12 col-lg-10">
+                      <div class="card text-dark" id="commentsList">
+                        <div class="card-body p-4">
+                          <div class="form-outline mb-4">
+                            <input type="text" id="addComment" class="form-control" th:if="${authenticated != null}" th:placeholder="#{user.comments.create}" />
+                            <input type="text" class="form-control" th:if="${authenticated == null}" disabled th:placeholder="#{user.comments.toCreate}" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
 </section>
 
 <footer id="footer" class="footer">
@@ -97,9 +141,7 @@
             <strong>Discord:</strong> Sevler#0099<br>
             <strong>Email:</strong> sevler.u17@gmail.com<br>
           </p>
-
         </div>
-
       </div>
     </div>
   </div>
@@ -121,5 +163,11 @@
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.2/swiper-bundle.min.js"></script>
 <script src="/static/js/main.min.js"></script>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  let commentsList = /*[[${comments}]]*/ '';
+  /*]]>*/
+</script>
+<script src="/static/js/user.js"></script>
 
 </html>
