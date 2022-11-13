@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.furestry.sevlersite.entities.db.Comment;
 import ru.furestry.sevlersite.entities.db.User;
-import ru.furestry.sevlersite.repositories.CommentRepository;
-import ru.furestry.sevlersite.repositories.UserRepository;
+import ru.furestry.sevlersite.repositories.interfaces.CommentRepository;
+import ru.furestry.sevlersite.repositories.interfaces.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;

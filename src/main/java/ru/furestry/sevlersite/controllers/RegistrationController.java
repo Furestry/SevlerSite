@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.furestry.sevlersite.entities.ApiToken;
 import ru.furestry.sevlersite.entities.db.User;
-import ru.furestry.sevlersite.repositories.RoleRepository;
-import ru.furestry.sevlersite.repositories.UserRepository;
+import ru.furestry.sevlersite.repositories.interfaces.RoleRepository;
+import ru.furestry.sevlersite.repositories.interfaces.UserRepository;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

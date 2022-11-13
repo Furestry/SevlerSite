@@ -6,10 +6,9 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import ru.furestry.sevlersite.entities.db.Privilege;
 import ru.furestry.sevlersite.entities.db.Role;
-import ru.furestry.sevlersite.entities.db.User;
-import ru.furestry.sevlersite.repositories.PrivilegeRepository;
-import ru.furestry.sevlersite.repositories.RoleRepository;
-import ru.furestry.sevlersite.repositories.UserRepository;
+import ru.furestry.sevlersite.repositories.interfaces.PrivilegeRepository;
+import ru.furestry.sevlersite.repositories.interfaces.RoleRepository;
+import ru.furestry.sevlersite.repositories.interfaces.UserRepository;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;

@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.furestry.sevlersite.entities.UserPrincipal;
 import ru.furestry.sevlersite.entities.db.User;
-import ru.furestry.sevlersite.repositories.UserRepository;
+import ru.furestry.sevlersite.repositories.interfaces.UserRepository;
 
 @Service
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
