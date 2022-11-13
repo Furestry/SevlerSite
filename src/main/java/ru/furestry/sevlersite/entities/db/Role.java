@@ -3,11 +3,14 @@ package ru.furestry.sevlersite.entities.db;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Data
 @Entity
-public class Role {
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = 0l;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +22,7 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "roles_privileges",
             joinColumns = @JoinColumn(

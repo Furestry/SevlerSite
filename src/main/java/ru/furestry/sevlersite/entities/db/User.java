@@ -34,7 +34,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
