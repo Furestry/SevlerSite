@@ -83,7 +83,7 @@
             </div>
             <hr>
             <div class="row">
-              <section class="pt-0 pb-2 overflow-auto">
+              <section class="pt-0 pb-2 overflow-auto" style="max-height: 70vh">
                 <h4 class="mb-1 pb-2 text-center" th:text="#{user.comments.title}"></h4>
 
                 <div class="container">
@@ -92,8 +92,8 @@
                       <div class="card text-dark" id="commentsList">
                         <div class="card-body p-4">
                           <div class="form-outline mb-4">
-                            <input type="text" id="addComment" class="form-control" th:if="${authenticated != null}" th:placeholder="#{user.comments.create}" />
-                            <input type="text" class="form-control" th:if="${authenticated == null}" disabled th:placeholder="#{user.comments.toCreate}" />
+                            <input type="text" id="addComment" class="form-control" sec:authorize="isAuthenticated()" th:placeholder="#{user.comments.create}" />
+                            <input type="text" class="form-control" sec:authorize="isAnonymous()" disabled th:placeholder="#{user.comments.toCreate}" />
                           </div>
                         </div>
                       </div>
@@ -166,6 +166,8 @@
 <script th:inline="javascript">
   /*<![CDATA[*/
   let commentsList = /*[[${comments}]]*/ '';
+  let edit = /*[[#{user.comments.edit}]]*/ '';
+  let delText = /*[[#{user.comments.delete}]]*/ '';
   /*]]>*/
 </script>
 <script src="/static/js/user.js"></script>
