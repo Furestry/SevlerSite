@@ -50,7 +50,7 @@ public class ApiTests {
 
     @Test
     public void usersByIdReturnNotFound() throws Exception {
-        mockMvc.perform(get(apiUrl + "users/99999"))
+        mockMvc.perform(get(apiUrl + "users/-1"))
                 .andExpect(status().isNotFound());
     }
 
@@ -68,6 +68,57 @@ public class ApiTests {
         mockMvc.perform(
                 get(apiUrl + "users/me")
                         .header("Authorization", "")
+                )
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    public void commentsReturnList() throws Exception {
+        mockMvc.perform(get(apiUrl + "comments"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    public void commentsByIdReturnOk() throws Exception {
+        mockMvc.perform(get(apiUrl + "comments/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("")));
+    }
+
+    @Test
+    public void commentsByIdReturnNotFound() throws Exception {
+        mockMvc.perform(get(apiUrl + "comments/-1"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void commentsByAuthorIdReturnOk() throws Exception {
+        mockMvc.perform(get(apiUrl + "comments/user/21"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("")));
+    }
+
+    @Test
+    public void commentsByAuthorIdReturnNotFound() throws Exception {
+        mockMvc.perform(get(apiUrl + "comments/user/99999"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void commentsMeReturnOk() throws Exception {
+        mockMvc.perform(get(apiUrl + "comments/me")
+                        .header("Authorization", "13df7edb91e2e85dd568bbef4c395c4e96e6fdabf909757f2a35246aa9f25b65")
+                )
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("")));
+    }
+
+    @Test
+    public void commentsMeReturnUnauthorized() throws Exception {
+        mockMvc.perform(
+                        get(apiUrl + "comments/me")
+                                .header("Authorization", "")
                 )
                 .andExpect(status().isUnauthorized());
     }
