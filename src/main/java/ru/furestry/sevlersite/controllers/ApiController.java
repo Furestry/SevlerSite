@@ -1,7 +1,5 @@
 package ru.furestry.sevlersite.controllers;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,6 @@ import ru.furestry.sevlersite.repositories.interfaces.CommentRepository;
 import ru.furestry.sevlersite.repositories.interfaces.UserRepository;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -41,37 +38,30 @@ public class ApiController {
         }
 
         @GetMapping(value = "/users")
-        public List<APIUser> getAllUsers() {
-            List<APIUser> users = new ArrayList<>();
-
-            userRepository.findAll().forEach(user -> {
-                APIUser apiUser = new APIUser(user.getId(), user.getUsername());
-                users.add(apiUser);
-            });
-
-            return users;
+        public List<User> getAllUsers() {
+            return userRepository.findAll();
         }
 
         @GetMapping(value = "/users/{userId}")
-        public ResponseEntity<APIUser> getUserById(@PathVariable Long userId) {
+        public ResponseEntity<User> getUserById(@PathVariable Long userId) {
             User user = userRepository.findById(userId).orElse(null);
 
             if (user == null) {
                 return ResponseEntity.notFound().build();
             }
 
-            return ResponseEntity.ok(new APIUser(userId, user.getUsername()));
+            return ResponseEntity.ok(user);
         }
 
         @GetMapping(value = "/users/me")
-        public ResponseEntity<APIUser> getMe(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        public ResponseEntity<User> getMe(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
             User user = userRepository.findByTokenHash(token);
 
             if (user == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
-            return ResponseEntity.ok(new APIUser(user.getId(), user.getUsername()));
+            return ResponseEntity.ok(user);
         }
 
         @GetMapping(value = "/comments")
@@ -121,15 +111,6 @@ public class ApiController {
         @Autowired
         public void setCommentRepository(CommentRepository commentRepository) {
             this.commentRepository = commentRepository;
-        }
-
-        @Data
-        @AllArgsConstructor
-        private class APIUser {
-
-            private Long id;
-
-            private String username;
         }
     }
 

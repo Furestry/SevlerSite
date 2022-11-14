@@ -81,9 +81,8 @@ public class ApiTests {
 
     @Test
     public void commentsByIdReturnOk() throws Exception {
-        mockMvc.perform(get(apiUrl + "comments/1"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("")));
+        mockMvc.perform(get(apiUrl + "comments/22"))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -94,14 +93,13 @@ public class ApiTests {
 
     @Test
     public void commentsByAuthorIdReturnOk() throws Exception {
-        mockMvc.perform(get(apiUrl + "comments/user/21"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("")));
+        mockMvc.perform(get(apiUrl + "comments/user/20"))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void commentsByAuthorIdReturnNotFound() throws Exception {
-        mockMvc.perform(get(apiUrl + "comments/user/99999"))
+        mockMvc.perform(get(apiUrl + "comments/user/-1"))
                 .andExpect(status().isNotFound());
     }
 
@@ -110,8 +108,7 @@ public class ApiTests {
         mockMvc.perform(get(apiUrl + "comments/me")
                         .header("Authorization", "13df7edb91e2e85dd568bbef4c395c4e96e6fdabf909757f2a35246aa9f25b65")
                 )
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("")));
+                .andExpect(status().isOk());
     }
 
     @Test
