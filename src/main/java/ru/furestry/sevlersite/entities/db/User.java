@@ -23,13 +23,17 @@ public class User implements Serializable {
     @Column(unique = true)
     private String username;
 
+    @JsonIgnore
     private String password;
 
+    @JsonIgnore
     private String token;
 
+    @JsonIgnore
     private String tokenHash;
 
     @Lob
+    @JsonIgnore
     private byte[] avatar;
 
     @JsonIgnore
