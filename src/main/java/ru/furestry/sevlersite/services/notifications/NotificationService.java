@@ -1,19 +1,17 @@
-package ru.furestry.sevlersite.services;
+package ru.furestry.sevlersite.services.notifications;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
 import ru.furestry.sevlersite.repositories.interfaces.EmitterRepository;
 import ru.furestry.sevlersite.entities.EventDto;
 import ru.furestry.sevlersite.components.EventMapper;
-import ru.furestry.sevlersite.services.interfaces.UpdateService;
+import ru.furestry.sevlersite.services.interfaces.INotificationService;
 
 import java.io.IOException;
 
 @Primary
-@Service
 @AllArgsConstructor
-public class CommentService implements UpdateService {
+public abstract class NotificationService implements INotificationService {
 
     private final EmitterRepository emitterRepository;
     private final EventMapper eventMapper;
@@ -24,10 +22,10 @@ public class CommentService implements UpdateService {
             return;
         }
 
-        doSendNotification(userId, event);
+        doSendUpdate(userId, event);
     }
 
-    private void doSendNotification(long userId, EventDto event) {
+    private void doSendUpdate(long userId, EventDto event) {
         emitterRepository.get(userId).ifPresent(sseEmitter -> {
             try {
                 sseEmitter.send(eventMapper.toSseEventBuilder(event));
