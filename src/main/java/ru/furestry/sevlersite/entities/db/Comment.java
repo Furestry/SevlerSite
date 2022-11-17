@@ -26,4 +26,11 @@ public class Comment {
 
     @Column(name = "author_id", nullable = false)
     private Long authorId;
+
+    @Lob
+    @Column
+    private byte[] authorAvatar;
+
+    @Column(nullable = false)
+    private boolean edited = false;
 }
