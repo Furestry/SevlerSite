@@ -1,4 +1,4 @@
-package ru.furestry.sevlersite.configs;
+package ru.furestry.sevlersite.configs.handlers;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -12,7 +12,11 @@ import java.io.IOException;
 public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
-    public void onLogoutSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException, ServletException {
+    public void onLogoutSuccess(
+            final HttpServletRequest request,
+            final HttpServletResponse response,
+            final Authentication authentication
+    ) throws IOException, ServletException {
         super.onLogoutSuccess(request, response, authentication);
     }
 
