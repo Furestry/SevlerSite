@@ -34,6 +34,9 @@
                     <li class="scrollto dropdown">
                         <a class="keychainify-checked" href="/api"><span th:text="#{api}"></span></a>
                     </li>
+                    <li class="scrollto">
+                        <a class="keychainify-checked" href="/users"><span th:text="#{users}"></span></a>
+                    </li>
                     <li><a class="nav-link scrollto" href="#contact" th:text="#{contact}"></a></li>
                     <li class="scrollto dropdown" sec:authorize="isAuthenticated()">
                         <a class="keychainify-checked"><span sec:authentication="name"></span> <i class="bi bi-chevron-down"></i></a>
