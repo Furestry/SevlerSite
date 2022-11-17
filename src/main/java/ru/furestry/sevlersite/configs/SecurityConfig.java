@@ -10,7 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import ru.furestry.sevlersite.configs.handlers.CustomLoginSuccessHandler;
+import ru.furestry.sevlersite.configs.handlers.CustomLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +24,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/users/**", "/api", "/api/v1/**", "/registration", "/static/**").permitAll()
+                .antMatchers("/", "/users/**", "/sse/**", "/api", "/api/v1/**", "/registration", "/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -30,7 +33,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .usernameParameter("user")
                 .passwordParameter("pass")
-                .defaultSuccessUrl("/account", false)
+                .successHandler(successHandler())
                 .failureUrl("/login?error=login")
                 .and()
                 .logout()
@@ -62,6 +65,11 @@ public class SecurityConfig {
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler() {
         return new CustomLogoutSuccessHandler();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new CustomLoginSuccessHandler();
     }
 
     @Bean
