@@ -6,18 +6,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import ru.furestry.sevlersite.entities.db.Comment;
-import ru.furestry.sevlersite.repositories.UserCommentsRepository;
-import ru.furestry.sevlersite.services.EmitterService;
+import ru.furestry.sevlersite.repositories.CommentsInMemoryRepository;
 import ru.furestry.sevlersite.entities.EventDto;
 import ru.furestry.sevlersite.entities.db.Role;
 import ru.furestry.sevlersite.entities.db.User;
 import ru.furestry.sevlersite.repositories.interfaces.CommentRepository;
 import ru.furestry.sevlersite.repositories.interfaces.UserRepository;
-import ru.furestry.sevlersite.services.interfaces.UpdateService;
+import ru.furestry.sevlersite.services.interfaces.INotificationService;
+import ru.furestry.sevlersite.services.notifications.CommentsNotificationService;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
@@ -32,31 +32,23 @@ public class UserController {
 
     private UserRepository userRepository;
     private CommentRepository commentRepository;
-    private UserCommentsRepository userCommentsRepository;
-    private final EmitterService emitterService;
-    private final UpdateService notificationService;
+    private CommentsInMemoryRepository commentsInMemoryRepository;
+    private INotificationService notificationService;
 
-    public UserController(EmitterService emitterService, UpdateService notificationService) {
-        this.emitterService = emitterService;
-        this.notificationService = notificationService;
+    @GetMapping
+    public String getUsersPage(Model model, Principal principal) {
+        model.addAttribute("users", userRepository.findAll());
 
-        Thread thread = new Thread(() -> {
-            EventDto event = new EventDto();
-            event.setType("ping");
-            event.setBody(null);
+        if (!checkIfNull(principal)) {
+            User user = userRepository.findByUsername(principal.getName());
 
-            userCommentsRepository.getAllIds().forEach(id -> notificationService.sendUpdate(id, event));
+            model.addAttribute("principalId", user.getId());
+        }
 
-            try {
-                Thread.sleep(1000 * 60 * 2);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        thread.start();
+        return "usersList";
     }
 
+    @Transactional
     @GetMapping("/id/{id}")
     public String getUserById(@PathVariable Long id, Model model, Principal principal) {
         User user = userRepository.findById(id).orElse(null);
@@ -121,6 +113,7 @@ public class UserController {
         Comment comment = new Comment();
 
         comment.setAuthorId(author.getId());
+        comment.setAuthorAvatar(author.getAvatar());
         comment.setUser(user);
         comment.setText(text);
         comment.setCommentedAt(LocalDateTime.now());
@@ -131,14 +124,13 @@ public class UserController {
             put("date", LocalDate.now());
             put("id", comment.getId());
             put("userId", user.getId());
+            put("authorId", author.getId());
             put("username", author.getUsername());
             put("avatar", author.getAvatar());
             put("text", text);
         }});
 
-        userCommentsRepository.getAllIds().forEach(id -> {
-            notificationService.sendUpdate(id, event);
-        });
+        commentsInMemoryRepository.getAllIds().forEach(id -> notificationService.sendUpdate(id, event));
 
         return ResponseEntity.ok().build();
     }
@@ -155,20 +147,23 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
+        LocalDateTime time = LocalDateTime.now();
+
         EventDto event = new EventDto();
         event.setType("editComment");
         event.setBody(new HashMap<>(){{
             put("commentId", comment.getId());
             put("userId", comment.getUser().getId());
             put("text", text);
+            put("date", time);
         }});
 
         comment.setText(text);
+        comment.setCommentedAt(time);
+        comment.setEdited(true);
         commentRepository.save(comment);
 
-        userCommentsRepository.getAllIds().forEach(id -> {
-            notificationService.sendUpdate(id, event);
-        });
+        commentsInMemoryRepository.getAllIds().forEach(id -> notificationService.sendUpdate(id, event));
 
         return ResponseEntity.ok().build();
     }
@@ -194,22 +189,9 @@ public class UserController {
 
         commentRepository.delete(comment);
 
-        userCommentsRepository.getAllIds().forEach(id -> {
-            notificationService.sendUpdate(id, event);
-        });
+        commentsInMemoryRepository.getAllIds().forEach(id -> notificationService.sendUpdate(id, event));
 
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/subscribe")
-    public SseEmitter subscribeToEvents(Principal principal) {
-        if (principal == null) {
-            return emitterService.createEmitter();
-        }
-
-        User user = userRepository.findByUsername(principal.getName());
-
-        return emitterService.createEmitter(user.getId());
     }
 
     private boolean checkIfNull(Object obj) {
@@ -226,12 +208,17 @@ public class UserController {
     }
 
     @Autowired
-    public void setUserCommentsRepository(UserCommentsRepository userCommentsRepository) {
-        this.userCommentsRepository = userCommentsRepository;
+    public void setNotificationService(CommentsNotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     @Autowired
     public void setCommentRepository(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
+    }
+
+    @Autowired
+    public void setUserCommentsRepository(CommentsInMemoryRepository commentsInMemoryRepository) {
+        this.commentsInMemoryRepository = commentsInMemoryRepository;
     }
 }
