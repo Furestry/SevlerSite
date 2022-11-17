@@ -7,13 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.furestry.sevlersite.entities.ApiToken;
+import ru.furestry.sevlersite.entities.EventDto;
 import ru.furestry.sevlersite.entities.db.User;
+import ru.furestry.sevlersite.repositories.UsersInMemoryRepository;
 import ru.furestry.sevlersite.repositories.interfaces.RoleRepository;
 import ru.furestry.sevlersite.repositories.interfaces.UserRepository;
+import ru.furestry.sevlersite.services.interfaces.INotificationService;
+import ru.furestry.sevlersite.services.notifications.UsersNotificationService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/registration")
@@ -26,6 +31,10 @@ public class RegistrationController {
     private RoleRepository roleRepository;
 
     private PasswordEncoder encoder;
+
+    private UsersInMemoryRepository usersInMemoryRepository;
+
+    private INotificationService notificationService;
 
     @GetMapping
     public String registerForm(@RequestParam(name = "error", required = false) String error, Model model) {
@@ -47,6 +56,16 @@ public class RegistrationController {
 
         userRepository.save(user);
 
+        EventDto event = new EventDto();
+        event.setType("createUser");
+        event.setBody(new HashMap<>(){{
+            put("id",user.getId());
+            put("avatar", user.getAvatar());
+            put("username", user.getUsername());
+        }});
+
+        usersInMemoryRepository.getAllIds().forEach(id -> notificationService.sendUpdate(id, event));
+
         response.sendRedirect("/login");
     }
 
@@ -63,6 +82,16 @@ public class RegistrationController {
     @Autowired
     public void setEncoder(PasswordEncoder encoder) {
         this.encoder = encoder;
+    }
+
+    @Autowired
+    public void setUsersInMemoryRepository(UsersInMemoryRepository usersInMemoryRepository) {
+        this.usersInMemoryRepository = usersInMemoryRepository;
+    }
+
+    @Autowired
+    public void setNotificationService(UsersNotificationService usersNotificationService) {
+        this.notificationService = usersNotificationService;
     }
 
 }
