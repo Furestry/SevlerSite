@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.security.Principal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.HashMap;
@@ -107,6 +106,8 @@ public class UserController {
 
         User author = userRepository.findByUsername(principal.getName());
 
+        LocalDateTime time = LocalDateTime.now();
+
         EventDto event = new EventDto();
         event.setType("createComment");
 
@@ -116,12 +117,12 @@ public class UserController {
         comment.setAuthorAvatar(author.getAvatar());
         comment.setUser(user);
         comment.setText(text);
-        comment.setCommentedAt(LocalDateTime.now());
+        comment.setCommentedAt(time);
 
         commentRepository.save(comment);
 
         event.setBody(new HashMap<>(){{
-            put("date", LocalDate.now());
+            put("date", time);
             put("id", comment.getId());
             put("userId", user.getId());
             put("authorId", author.getId());
