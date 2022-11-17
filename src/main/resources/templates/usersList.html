@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SevlerSite - Users</title>
+
+  <link href="/static/favicon.ico" rel="icon">
+  <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  <link href="/static/css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+<header id="header" class="header fixed-top">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+    <a href="/" class="logo d-flex align-items-center">
+      <img src="/static/img/logo.png" alt="Logo">
+      <span>Sevler Site</span>
+    </a>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li class="scrollto dropdown">
+          <a class="keychainify-checked" href="/api"><span th:text="#{api}"></span></a>
+        </li>
+        <li><a class="nav-link scrollto" href="#contact" th:text="#{contact}"></a></li>
+        <li class="scrollto dropdown" sec:authorize="isAuthenticated()">
+          <a class="keychainify-checked"><span sec:authentication="name"></span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="/account" class="keychainify-checked" th:text="#{settings}"></a></li>
+            <li><a href="/logout" class="keychainify-checked" th:text="#{logout}"></a></li>
+          </ul>
+        </li>
+        <li class="scrollto dropdown" sec:authorize="isAnonymous()">
+          <a class="keychainify-checked"><span th:text="#{signIn}"></span><i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="/login" class="keychainify-checked" th:text="#{signIn}"></a></li>
+            <li><a href="/registration" class="keychainify-checked" th:text="#{signUp}"></a></li>
+          </ul>
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+
+  </div>
+</header>
+
+<section style="background-color: #eee">
+
+</section>
+
+<footer id="footer" class="footer">
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="/" class="logo d-flex align-items-center">
+            <img src="/static/img/logo.png" alt="Logo">
+            <span>Sevler Site</span>
+          </a>
+          <p th:text="#{text.footer}"></p>
+          <div class="social-links mt-3">
+            <a href="https://github.com/Furestry" class="github"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4 th:text="#{footer.links.title}"></h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="/" th:text="#{footer.links.home}"></a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/api" th:text="#{footer.links.api}"></a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/registration" th:text="#{footer.links.registration}"></a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start" id="contact">
+          <h4 th:text="#{footer.contact}"></h4>
+          <p>
+            <strong>Telegram:</strong> @sevler<br>
+            <strong>Discord:</strong> Sevler#0099<br>
+            <strong>Email:</strong> sevler.u17@gmail.com<br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      <span th:text="#{text.copyright}"></span>
+      <strong><span><a href="https://github.com/Furestry" class="bi bi-github"> Sevler</a></span></strong>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  const usersList = /*[[${users}]]*/ '';
+  const principalId = /*[[${principalId}]]*/ '';
+  /*]]>*/
+</script>
+<script src="/static/js/users.js"></script>
+
+</html>
