@@ -1,12 +1,10 @@
-package ru.furestry.sevlersite.services;
+package ru.furestry.sevlersite.services.emitters;
 
-import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import ru.furestry.sevlersite.repositories.interfaces.EmitterRepository;
 
-@Service
-public class EmitterService {
-    private final long eventsTimeout = 1000 * 60 * 5;
+public abstract class EmitterService {
+    private final long eventsTimeout = -1L;
     private final EmitterRepository repository;
 
     public EmitterService(EmitterRepository repository) {
