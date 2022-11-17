@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 @RequiredArgsConstructor
-public class UserCommentsRepository implements EmitterRepository {
+public class CommentsInMemoryRepository implements EmitterRepository {
 
     private long previousTimeMillis = System.currentTimeMillis();
     private long counter = 0L;
@@ -55,4 +55,5 @@ public class UserCommentsRepository implements EmitterRepository {
 
         return timeComponent | counter;
     }
+
 }
