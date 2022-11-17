@@ -165,11 +165,12 @@
 <script src="/static/js/main.min.js"></script>
 <script th:inline="javascript">
   /*<![CDATA[*/
-  let commentsList = /*[[${comments}]]*/ '';
-  let edit = /*[[#{user.comments.edit}]]*/ '';
-  let delText = /*[[#{user.comments.delete}]]*/ '';
+  const commentsList = /*[[${comments}]]*/ '';
+  const edit = /*[[#{user.comments.edit}]]*/ '';
+  const delText = /*[[#{user.comments.delete}]]*/ '';
+  const principal = /*[[${principal}]]*/ '';
   /*]]>*/
 </script>
-<script src="/static/js/user.min.js"></script>
+<script src="/static/js/user.js"></script>
 
 </html>
