@@ -32,6 +32,9 @@
         <li class="scrollto dropdown">
           <a class="keychainify-checked" href="/api"><span th:text="#{api}"></span></a>
         </li>
+        <li class="scrollto">
+          <a class="keychainify-checked" href="/users"><span th:text="#{users}"></span></a>
+        </li>
         <li><a class="nav-link scrollto" href="#contact" th:text="#{contact}"></a></li>
         <li class="scrollto dropdown" sec:authorize="isAuthenticated()">
           <a class="keychainify-checked"><span sec:authentication="name"></span> <i class="bi bi-chevron-down"></i></a>
@@ -54,8 +57,16 @@
   </div>
 </header>
 
-<section style="background-color: #eee">
+<section class="hero">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 col-lg-10">
+        <div id="usersList">
 
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer id="footer" class="footer">
@@ -109,9 +120,10 @@
 <script th:inline="javascript">
   /*<![CDATA[*/
   const usersList = /*[[${users}]]*/ '';
-  const principalId = /*[[${principalId}]]*/ '';
+  const principal = /*[[${principal}]]*/ '';
+  const youText = /*[[#{users.you}]]*/ '';
   /*]]>*/
 </script>
-<script src="/static/js/users.js"></script>
+<script src="/static/js/users.min.js"></script>
 
 </html>
