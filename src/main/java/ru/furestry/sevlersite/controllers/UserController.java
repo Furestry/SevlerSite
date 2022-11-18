@@ -73,7 +73,7 @@ public class UserController {
         if (!checkIfNull(principal)) {
             User principalUser = userRepository.findByUsername(principal.getName());
 
-            model.addAttribute("principal", principalUser);
+            model.addAttribute("principalId", principalUser.getId());
         }
 
         return "user";
