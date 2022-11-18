@@ -33,7 +33,6 @@ public class User implements Serializable {
     private String tokenHash;
 
     @Lob
-    @JsonIgnore
     private byte[] avatar;
 
     @JsonIgnore
