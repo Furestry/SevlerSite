@@ -42,6 +42,7 @@ out/
 /src/main/resources/static/js/account.js
 /src/main/resources/static/js/api.js
 /src/main/resources/static/js/main.js
+/src/main/resources/static/js/lang.js
 /src/main/resources/static/js/user.js
 /src/main/resources/static/js/users.js
 /src/main/resources/static/js/registration.js
