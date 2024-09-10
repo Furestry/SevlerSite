@@ -1,16 +1,21 @@
 package ru.furestry.sevlersite.entities.db;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class Role implements Serializable {
 
-    private static final long serialVersionUID = 0l;
+    @Serial
+    private static final long serialVersionUID = 0L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +25,7 @@ public class Role implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
+    @ToString.Exclude
     private Collection<User> users;
 
     @ManyToMany(fetch = FetchType.EAGER)
