@@ -17,7 +17,7 @@ public class CommentsInMemoryRepository implements EmitterRepository {
     private long previousTimeMillis = System.currentTimeMillis();
     private long counter = 0L;
 
-    private Map<Long, SseEmitter> userEmitterMap = new ConcurrentHashMap<>();
+    private final Map<Long, SseEmitter> userEmitterMap = new ConcurrentHashMap<>();
 
     @Override
     public void addOrReplaceEmitter(long memberId, SseEmitter emitter) {
@@ -26,9 +26,7 @@ public class CommentsInMemoryRepository implements EmitterRepository {
 
     @Override
     public void remove(long memberId) {
-        if (userEmitterMap != null && userEmitterMap.containsKey(memberId)) {
-            userEmitterMap.remove(memberId);
-        }
+        userEmitterMap.remove(memberId);
     }
 
     @Override
