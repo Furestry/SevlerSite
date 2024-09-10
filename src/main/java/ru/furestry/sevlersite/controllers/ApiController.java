@@ -26,7 +26,7 @@ public class ApiController {
 
     @RestController
     @RequestMapping("/api/v1")
-    public class APIRestController {
+    public static class APIRestController {
 
         private UserRepository userRepository;
 
@@ -96,7 +96,7 @@ public class ApiController {
         public ResponseEntity<Collection<Comment>> getCommentByUserId(@PathVariable Long authorId) {
             Collection<Comment> comments = commentRepository.findAllByAuthorId(authorId);
 
-            if (comments.size() == 0) {
+            if (comments.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
 
