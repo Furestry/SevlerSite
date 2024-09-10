@@ -18,6 +18,7 @@ import ru.furestry.sevlersite.services.notifications.UsersNotificationService;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 @Controller
@@ -52,7 +53,7 @@ public class RegistrationController {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setToken(apiTokenValue);
         user.setTokenHash(ApiToken.hashToken(apiTokenValue));
-        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
+        user.setRoles(Collections.singletonList(roleRepository.findByName("ROLE_USER")));
 
         userRepository.save(user);
 

@@ -80,7 +80,7 @@ public class AccountController {
 
     @RestController
     @RequestMapping("/account")
-    public class AccountAvatar {
+    public static class AccountAvatar {
 
         private UserRepository userRepository;
 
@@ -99,7 +99,7 @@ public class AccountController {
     }
 
     @Data
-    public class Password {
+    public static class Password {
 
         private String oldPassword;
 
